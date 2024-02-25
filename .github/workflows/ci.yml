@@ -10,9 +10,9 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
   pull_request:
-    branches: ["main"]
+    branches: ['main']
 
 permissions:
   contents: read
@@ -63,3 +63,9 @@ jobs:
 
       - name: Run E2E tests
         run: pnpm run test:e2e
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: yasaichi-sandbox/simple-api-gateway
