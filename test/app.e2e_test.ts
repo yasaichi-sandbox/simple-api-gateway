@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { afterEach, beforeEach, describe, it } from '@std/testing/bdd';
 import request from 'supertest';
-import { afterEach, beforeEach, describe, it } from 'testing/bdd.ts';
 import { AppModule } from '../src/app.module.ts';
 
 describe('AppController (e2e)', () => {

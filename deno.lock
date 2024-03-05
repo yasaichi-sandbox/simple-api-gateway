@@ -1,12 +1,9 @@
 {
   "version": "3",
-  "remote": {
-    "https://deno.land/std@0.217.0/testing/_test_suite.ts": "f10a8a6338b60c403f07a76f3f46bdc9f1e1a820c0a1decddeb2949f7a8a0546",
-    "https://deno.land/std@0.217.0/testing/bdd.ts": "a7a9f691c6531166e4afa9d91bd5750c7418407bb310473b27eda59fd2d1f609"
-  },
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@jsr/std__testing@^0.218.2",
         "npm:@nestjs/cli@^10.0.0",
         "npm:@nestjs/common@^10.0.0",
         "npm:@nestjs/core@^10.0.0",

@@ -31,6 +31,9 @@ devDependencies:
   '@nestjs/testing':
     specifier: ^10.0.0
     version: 10.3.3(@nestjs/common@10.3.3)(@nestjs/core@10.3.3)(@nestjs/platform-express@10.3.3)
+  '@std/testing':
+    specifier: npm:@jsr/std__testing@^0.218.2
+    version: /@jsr/std__testing@0.218.2
   '@types/express':
     specifier: ^4.17.17
     version: 4.17.21
@@ -168,6 +171,50 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+    dev: true
+
+  /@jsr/std__assert@0.218.2:
+    resolution: {integrity: sha512-8cymQR1kt8ASAz5bovPDe6CNsLCysqEAHEN1XdJJUezSroAcBWuOIj8C/bU0sz0JVhFe6Dn+VEPlTeaPNc0UTw==, tarball: https://npm.jsr.io/~/6/@jsr/std__assert/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__fmt': 0.218.2
+    dev: true
+
+  /@jsr/std__async@0.218.2:
+    resolution: {integrity: sha512-9BiU7/CLiDU1t93oQO12E2O0Ymx5hDzZ53AVvOO6w8MFc1wLQZW+bqYTBL/pTXQ7Mv01wINNxfqyiP4PTLH3ng==, tarball: https://npm.jsr.io/~/6/@jsr/std__async/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+    dev: true
+
+  /@jsr/std__data-structures@0.218.2:
+    resolution: {integrity: sha512-lF2zBnvSCXGw7FcyzKScYCCaeVJ0UAj5WAfapxvY2cN7vwlXnlhOhKhaGd0Zjw3AY0NH+p5hOsAUYqoLG1LVQg==, tarball: https://npm.jsr.io/~/6/@jsr/std__data-structures/0.218.2.tgz}
+    dev: true
+
+  /@jsr/std__fmt@0.218.2:
+    resolution: {integrity: sha512-EZLPLlc03sviW+8u3UJcbvbdAUpZcvAV5iMt6nT6UIrRKNBytN/5pGRVHeTRk+7bj0Lv0rsZ7kAdShJ9Lv+sAw==, tarball: https://npm.jsr.io/~/6/@jsr/std__fmt/0.218.2.tgz}
+    dev: true
+
+  /@jsr/std__fs@0.218.2:
+    resolution: {integrity: sha512-se3uY5CWZeccMpfkB2eWCboRypiwZIT9Zw6jstajl9onWV+uNw1kSFeU1LW9bDwmjK2seIenKJZclBNO8pSYWA==, tarball: https://npm.jsr.io/~/6/@jsr/std__fs/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+      '@jsr/std__path': 0.218.2
+    dev: true
+
+  /@jsr/std__path@0.218.2:
+    resolution: {integrity: sha512-Q2VdTDfFU6ArvTNNAKZ5jXd3c8G1k3Iv5doqGWOIVEJ0yER8uZQ2re+x+kFZ0hwbLO1gIduKz0fpliouJy1PSw==, tarball: https://npm.jsr.io/~/6/@jsr/std__path/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+    dev: true
+
+  /@jsr/std__testing@0.218.2:
+    resolution: {integrity: sha512-9pzA837Qwmg9moyJKsTd6Pr3rKc1d1JD31UT7tb/Jdw2jxnhywzgP0lWnOi6DRTVSbe2AfNj4FsQLnDQWxVNQA==, tarball: https://npm.jsr.io/~/6/@jsr/std__testing/0.218.2.tgz}
+    dependencies:
+      '@jsr/std__assert': 0.218.2
+      '@jsr/std__async': 0.218.2
+      '@jsr/std__data-structures': 0.218.2
+      '@jsr/std__fmt': 0.218.2
+      '@jsr/std__fs': 0.218.2
+      '@jsr/std__path': 0.218.2
     dev: true
 
   /@ljharb/through@2.3.12:

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { beforeEach, describe, it } from '@std/testing/bdd';
 import assert from 'node:assert';
-import { beforeEach, describe, it } from 'testing/bdd.ts';
 import { AppController } from './app.controller.ts';
 import { AppService } from './app.service.ts';
 
