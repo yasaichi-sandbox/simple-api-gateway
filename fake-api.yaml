@@ -1,0 +1,85 @@
+openapi: '3.0.2'
+info:
+  title: JSONPlaceholder
+  version: '1.0'
+servers:
+  - url: https://jsonplaceholder.typicode.com
+
+components:
+  schemas:
+    entityId:
+      type: integer
+      minimum: 1
+    post:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/entityId'
+        userId:
+          $ref: '#/components/schemas/entityId'
+        title:
+          type: string
+        body:
+          type: string
+    user:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/entityId'
+        name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+  parameters:
+    user-id:
+      name: user-id
+      in: path
+      description: 'key: id of user'
+      required: true
+      style: simple
+      schema:
+        $ref: '#/components/schemas/entityId'
+
+paths:
+  /posts:
+    get:
+      description: Get posts
+      parameters:
+        - name: userId
+          in: query
+          description: Filter results by user ID
+          required: false
+          style: form
+          schema:
+            $ref: '#/components/schemas/entityId'
+        - name: limit
+          in: query
+          description: Limit results by number
+          required: false
+          style: form
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/post'
+  /users/{user-id}:
+    get:
+      description: 'Get user by ID'
+      parameters:
+        - $ref: '#/components/parameters/user-id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
