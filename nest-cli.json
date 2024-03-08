@@ -4,5 +4,13 @@
   "sourceRoot": "src",
   "compilerOptions": {
     "deleteOutDir": true
+  },
+  "projects": {
+    "fake-api": {
+      "type": "library",
+      "root": "libs/fake-api",
+      "entryFile": "mod",
+      "sourceRoot": "libs/fake-api/src"
+    }
   }
 }

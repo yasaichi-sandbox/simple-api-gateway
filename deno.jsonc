@@ -4,11 +4,16 @@
     "experimentalDecorators": true
   },
   "fmt": {
-    "include": ["src/", "test/"],
+    "include": ["src/", "libs/", "test/"],
+    "exclude": ["**/generated/"],
     "singleQuote": true
   },
+  "imports": {
+    "@app/fake-api": "./libs/fake-api/src/index.ts"
+  },
   "lint": {
-    "include": ["src/", "apps/", "libs/", "test/"]
+    "include": ["src/", "apps/", "libs/", "test/"],
+    "exclude": ["**/generated/"]
   },
   "unstable": ["byonm"]
 }

@@ -1,9 +1,16 @@
 {
   "version": "3",
+  "remote": {},
   "workspace": {
     "packageJson": {
       "dependencies": [
         "npm:@jsr/std__testing@^0.218.2",
+        "npm:@microsoft/kiota-abstractions@1.0.0-preview.44",
+        "npm:@microsoft/kiota-http-fetchlibrary@1.0.0-preview.43",
+        "npm:@microsoft/kiota-serialization-form@1.0.0-preview.33",
+        "npm:@microsoft/kiota-serialization-json@1.0.0-preview.44",
+        "npm:@microsoft/kiota-serialization-multipart@1.0.0-preview.23",
+        "npm:@microsoft/kiota-serialization-text@1.0.0-preview.41",
         "npm:@nestjs/cli@^10.0.0",
         "npm:@nestjs/common@^10.0.0",
         "npm:@nestjs/core@^10.0.0",
