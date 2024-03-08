@@ -40,7 +40,9 @@
     "@std/testing": "npm:@jsr/std__testing@^0.218.2",
     "@types/express": "^4.17.17",
     "@types/node": "^20.3.1",
+    "@types/sinon": "^17.0.3",
     "@types/supertest": "^6.0.0",
+    "sinon": "^17.0.1",
     "supertest": "^6.3.3"
   }
 }
