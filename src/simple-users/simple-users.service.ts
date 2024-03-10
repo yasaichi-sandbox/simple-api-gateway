@@ -1,10 +1,14 @@
-import { FAKE_API_SERVICE_TOKEN, type FakeApiService } from '@app/fake-api';
+import {
+  FAKE_API_KIOTA_SERVICE_TOKEN,
+  type FakeApiService,
+} from '@app/fake-api-kiota';
 import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class SimpleUsersService {
   constructor(
-    @Inject(FAKE_API_SERVICE_TOKEN) private readonly apiService: FakeApiService,
+    @Inject(FAKE_API_KIOTA_SERVICE_TOKEN) private readonly apiService:
+      FakeApiService,
   ) {}
 
   async findOneWithLatestPosts(id: number) {

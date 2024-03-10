@@ -21,6 +21,11 @@ components:
           type: string
         body:
           type: string
+      required:
+        - id
+        - userId
+        - title
+        - body
     user:
       type: object
       properties:
@@ -33,6 +38,11 @@ components:
         email:
           type: string
           format: email
+      required:
+        - id
+        - name
+        - username
+        - email
   parameters:
     user-id:
       name: user-id

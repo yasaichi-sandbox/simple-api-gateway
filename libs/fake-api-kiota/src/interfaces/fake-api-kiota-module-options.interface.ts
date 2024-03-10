@@ -1,6 +1,6 @@
 import { type RequestAdapter } from '@microsoft/kiota-abstractions';
 
-export interface FakeApiModuleOptions {
+export interface FakeApiKiotaModuleOptions {
   baseUrl?: string;
   requestAdapter?: RequestAdapter;
 }
