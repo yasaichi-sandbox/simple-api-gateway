@@ -1,6 +1,6 @@
-import { type RequestAdapter } from '@microsoft/kiota-abstractions';
+import { HttpClient } from '@microsoft/kiota-http-fetchlibrary';
 
 export interface FakeApiKiotaModuleOptions {
   baseUrl?: string;
-  requestAdapter?: RequestAdapter;
+  customFetch?: ConstructorParameters<typeof HttpClient>[0];
 }

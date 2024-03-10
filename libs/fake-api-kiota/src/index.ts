@@ -1,4 +1,3 @@
-export { type RequestAdapter } from '@microsoft/kiota-abstractions';
 export * from './fake-api-kiota.constants.ts';
 export * from './fake-api-kiota.module.ts';
 export { type ApiClient as FakeApiService } from './generated/apiClient.ts';

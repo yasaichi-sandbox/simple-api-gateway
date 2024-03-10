@@ -13,9 +13,9 @@
     "start:debug": "deno run --allow-env --allow-net --allow-read=. --inspect=127.0.0.1:9229 --watch src/main.ts",
     "start:prod": "deno run --allow-env --allow-net --allow-read=. src/main.ts",
     "lint": "deno lint",
-    "test": "deno test --ignore=test/ --parallel",
-    "test:watch": "pnpm run test --watch",
-    "test:cov": "pnpm run test --coverage && deno coverage --exclude='/generated/' && deno coverage --exclude='/generated/' --lcov --output=coverage/lcov.info",
+    "test": "deno test --allow-env --ignore=test/ --parallel",
+    "test:watch": "deno task test --watch",
+    "test:cov": "deno task test --coverage && deno coverage --exclude='/generated/' && deno coverage --exclude='/generated/' --lcov --output=coverage/lcov.info",
     "test:debug": "deno test --inspect-brk=127.0.0.1:9230",
     "test:e2e": "deno test --allow-env --allow-net --allow-read=. --parallel test/"
   },
@@ -40,9 +40,8 @@
     "@std/testing": "npm:@jsr/std__testing@^0.218.2",
     "@types/express": "^4.17.17",
     "@types/node": "^20.3.1",
-    "@types/sinon": "^17.0.3",
     "@types/supertest": "^6.0.0",
-    "sinon": "^17.0.1",
+    "fetch-mock": "^9.11.0",
     "supertest": "^6.3.3"
   }
 }

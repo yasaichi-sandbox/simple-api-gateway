@@ -19,12 +19,11 @@
         "npm:@nestjs/testing@^10.0.0",
         "npm:@types/express@^4.17.17",
         "npm:@types/node@^20.3.1",
-        "npm:@types/sinon@^17.0.3",
         "npm:@types/supertest@^6.0.0",
         "npm:effect@^2.4.0",
+        "npm:fetch-mock@^9.11.0",
         "npm:reflect-metadata@^0.2.0",
         "npm:rxjs@^7.8.1",
-        "npm:sinon@^17.0.1",
         "npm:supertest@^6.3.3"
       ]
     }
