@@ -9,7 +9,7 @@
     "fake-api": {
       "type": "library",
       "root": "libs/fake-api",
-      "entryFile": "mod",
+      "entryFile": "index",
       "sourceRoot": "libs/fake-api/src"
     }
   }
