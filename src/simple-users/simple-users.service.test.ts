@@ -3,7 +3,7 @@ import {
   type Post,
   type RequestAdapter,
   type User,
-} from '@app/fake-api';
+} from '@app/fake-api-kiota';
 import { Test, TestingModule } from '@nestjs/testing';
 import { beforeEach, describe, it } from '@std/testing/bdd';
 import assert from 'node:assert';

@@ -1,11 +1,11 @@
 import { AnonymousAuthenticationProvider } from '@microsoft/kiota-abstractions';
 import { FetchRequestAdapter } from '@microsoft/kiota-http-fetchlibrary';
 import { DynamicModule } from '@nestjs/common';
-import { FAKE_API_SERVICE_TOKEN } from './fake-api.constants.ts';
+import { FAKE_API_KIOTA_SERVICE_TOKEN } from './fake-api-kiota.constants.ts';
 import {
   ConfigurableModuleClass,
   OPTIONS_TYPE,
-} from './fake-api.module-definition.ts';
+} from './fake-api-kiota.module-definition.ts';
 import { createApiClient } from './generated/apiClient.ts';
 
 export class FakeApiModule extends ConfigurableModuleClass {
@@ -34,7 +34,7 @@ export class FakeApiModule extends ConfigurableModuleClass {
     return {
       ...super.register(restOptions),
       providers: [{
-        provide: FAKE_API_SERVICE_TOKEN,
+        provide: FAKE_API_KIOTA_SERVICE_TOKEN,
         // NOTE: This is a workaround to use the API client with NestJS dependency injection mechanism.
         // For further details, please refer to the following comment:
         // https://github.com/microsoft/kiota-typescript/issues/1075#issuecomment-1987042257
@@ -45,7 +45,7 @@ export class FakeApiModule extends ConfigurableModuleClass {
               : Reflect.get(target, prop),
         }),
       }],
-      exports: [FAKE_API_SERVICE_TOKEN],
+      exports: [FAKE_API_KIOTA_SERVICE_TOKEN],
     };
   }
 }

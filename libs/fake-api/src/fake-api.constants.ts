@@ -1,1 +1,0 @@
-export const FAKE_API_SERVICE_TOKEN = Symbol('FAKE_API_SERVICE');

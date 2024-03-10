@@ -9,7 +9,7 @@
     "singleQuote": true
   },
   "imports": {
-    "@app/fake-api": "./libs/fake-api/src/index.ts"
+    "@app/fake-api-kiota": "./libs/fake-api-kiota/src/index.ts"
   },
   "lint": {
     "include": ["src/", "apps/", "libs/", "test/"],
