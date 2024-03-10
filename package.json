@@ -15,7 +15,7 @@
     "lint": "deno lint",
     "test": "deno test --ignore=test/ --parallel",
     "test:watch": "pnpm run test --watch",
-    "test:cov": "pnpm run test --coverage && deno coverage && deno coverage --lcov --output=coverage/lcov.info",
+    "test:cov": "pnpm run test --coverage && deno coverage --exclude='/generated/' && deno coverage --exclude='/generated/' --lcov --output=coverage/lcov.info",
     "test:debug": "deno test --inspect-brk=127.0.0.1:9230",
     "test:e2e": "deno test --allow-env --allow-net --allow-read=. --parallel test/"
   },
