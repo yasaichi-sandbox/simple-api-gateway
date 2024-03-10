@@ -21,22 +21,24 @@ export class FakeApiModule extends ConfigurableModuleClass {
     ...FakeApiModule.nestLifecycleHooks,
   ]);
 
-  static register(options: typeof OPTIONS_TYPE): DynamicModule {
-    const adapter = new FetchRequestAdapter(
+  static register(
+    { baseUrl, requestAdapter, ...restOptions }: typeof OPTIONS_TYPE,
+  ): DynamicModule {
+    requestAdapter ||= new FetchRequestAdapter(
       new AnonymousAuthenticationProvider(),
     );
-    if (options.baseUrl) {
-      adapter.baseUrl = options.baseUrl;
+    if (baseUrl) {
+      requestAdapter.baseUrl = baseUrl;
     }
 
     return {
-      ...super.register(options),
+      ...super.register(restOptions),
       providers: [{
         provide: FAKE_API_SERVICE_TOKEN,
         // NOTE: This is a workaround to use the API client with NestJS dependency injection mechanism.
         // For further details, please refer to the following comment:
         // https://github.com/microsoft/kiota-typescript/issues/1075#issuecomment-1987042257
-        useValue: new Proxy(createApiClient(adapter), {
+        useValue: new Proxy(createApiClient(requestAdapter), {
           get: (target, prop) =>
             FakeApiModule.apiServicePropsCalledByNest.has(prop.toString())
               ? undefined
