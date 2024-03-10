@@ -6,6 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "codegen": "openapi-generator generate -g typescript-fetch -i ./libs/fake-api/schema.yaml -o libs/fake-api/src/generated/ --additional-properties=importFileExtension=.ts,supportsES6=true,withInterfaces=true",
     "codegen:kiota": "kiota generate --co -l typescript -d ./libs/fake-api-kiota/schema.yaml -o ./libs/fake-api-kiota/src/generated/ && ls && find ./libs/fake-api-kiota/src/generated/ -type f -exec sed -i '' -E \"s/from '\\.(.+)\\/';/from '.\\1\\/index.ts';/g\" {} +",
     "format": "deno fmt",
     "start": "deno run --allow-env --allow-net --allow-read=. src/main.ts",
