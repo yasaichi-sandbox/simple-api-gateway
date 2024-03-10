@@ -93,3 +93,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/user'
+        '404':
+          description: User no found
+          content:
+            application/json:
+              schema:
+                type: object
