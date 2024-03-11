@@ -8,7 +8,7 @@ import { SimpleUsersService } from './simple-users.service.ts';
 describe(SimpleUsersService.name, () => {
   let service: SimpleUsersService;
 
-  describe('#findOneWithLatestPosts()', () => {
+  describe(SimpleUsersService.prototype.findOneWithLatestPosts.name, () => {
     const userId = 42;
     const user: User = {
       id: userId,
