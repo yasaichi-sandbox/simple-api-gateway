@@ -15,5 +15,6 @@
     "include": ["src/", "apps/", "libs/", "test/"],
     "exclude": ["**/generated/"]
   },
+  "lock": false,
   "unstable": ["byonm"]
 }
