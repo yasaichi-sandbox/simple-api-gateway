@@ -15,8 +15,8 @@ dependencies:
     specifier: 1.0.0-preview.36
     version: 1.0.0-preview.36
   '@microsoft/kiota-serialization-json':
-    specifier: 1.0.0-preview.44
-    version: 1.0.0-preview.44
+    specifier: 1.0.0-preview.47
+    version: 1.0.0-preview.47
   '@microsoft/kiota-serialization-multipart':
     specifier: 1.0.0-preview.26
     version: 1.0.0-preview.26
@@ -491,8 +491,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@microsoft/kiota-serialization-json@1.0.0-preview.44:
-    resolution: {integrity: sha512-fcIJS/puCmuKdGtHIK9DKihfVwnISny4aUXjefXoo7ApnSieQwS4xGJUIDSu5QDmea103Uko0W++0l3k7oYuUA==}
+  /@microsoft/kiota-serialization-json@1.0.0-preview.47:
+    resolution: {integrity: sha512-ckXsvkdspqM4pwpX+g+oH4x56jNBrjWbPA6FBLdK0itUoqa9ntE8qz6pyREeIgjFSHCq9VhirBKznhsIFeofmQ==}
     dependencies:
       '@microsoft/kiota-abstractions': 1.0.0-preview.47
       guid-typescript: 1.0.9
