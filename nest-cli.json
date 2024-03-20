@@ -11,6 +11,12 @@
       "root": "libs/fake-api",
       "entryFile": "index",
       "sourceRoot": "libs/fake-api/src"
+    },
+    "nestjs-kiota": {
+      "type": "library",
+      "root": "libs/nestjs-kiota",
+      "entryFile": "index",
+      "sourceRoot": "libs/nestjs-kiota/src"
     }
   }
 }
