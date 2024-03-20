@@ -2,11 +2,11 @@ import {
   CallHandler,
   ExecutionContext,
   Injectable,
+  InternalServerErrorException,
   Logger,
   NestInterceptor,
 } from '@nestjs/common';
 import { Effect, identity, Match, unsafeCoerce } from 'effect';
-import createError from 'http-errors';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -37,20 +37,20 @@ export class AppInterceptor implements NestInterceptor {
                   success.value),
                 Match.tag(
                   'Failure',
-                  (failure) =>
-                    Match.value(failure.cause).pipe(
+                  ({ cause }) =>
+                    Match.value(cause).pipe(
                       Match.tag('Fail', ({ error }) => {
                         throw error;
                       }),
-                      Match.orElse((anotherFailure) => {
-                        this.logger.error(anotherFailure);
-                        throw createError(500);
+                      Match.orElse((unexpectedCause) => {
+                        this.logger.error(unexpectedCause);
+                        throw new InternalServerErrorException();
                       }),
                     ),
                 ),
                 Match.exhaustive,
               )),
-            Match.orElse(identity),
+            Match.orElse(identity), // Just return the value if it's not an effect
           )
         ),
       );

@@ -9,7 +9,8 @@
     "singleQuote": true
   },
   "imports": {
-    "@app/fake-api-kiota": "./libs/fake-api-kiota/src/index.ts"
+    "@app/fake-api-kiota": "./libs/fake-api-kiota/src/index.ts",
+    "@app/nestjs-kiota": "./libs/nestjs-kiota/src/index.ts"
   },
   "lint": {
     "include": ["src/", "apps/", "libs/", "test/"],
