@@ -1,9 +1,8 @@
 import { FakeApiKiotaModule, type Post, type User } from '@app/fake-api-kiota';
 import { Test, TestingModule } from '@nestjs/testing';
 import { beforeEach, describe, it } from '@std/testing/bdd';
-import { Effect } from 'effect';
+import { Effect, Match } from 'effect';
 import fetchMock from 'fetch-mock';
-import createHttpError from 'http-errors';
 import assert from 'node:assert';
 import { EffectiveUsersService } from './effective-users.service.ts';
 
@@ -42,14 +41,27 @@ describe(EffectiveUsersService.name, () => {
         service = module.get(EffectiveUsersService);
       });
 
-      it('should throw an error equivalent to HTTP 404 error', () => {
-        assert.rejects(
-          Effect.runPromise(
+      it('should throw `NotFoundException`', async () => {
+        Match.value(
+          await Effect.runPromiseExit(
             service.findOneWithLatestPosts(userId).pipe(
               Effect.withConcurrency('unbounded'),
             ),
           ),
-          createHttpError(404),
+        ).pipe(
+          Match.tag('Failure', ({ cause }) =>
+            Match.value(cause).pipe(
+              Match.tag('Fail', ({ error }) => {
+                assert.deepEqual(error.getResponse(), {
+                  message: 'Not Found',
+                  statusCode: 404,
+                });
+              }),
+              Match.orElse((unexpectedCause) =>
+                assert.fail(`Unexpected cause: ${unexpectedCause}`)
+              ),
+            )),
+          Match.orElse((exit) => assert.fail(`Unexpected exit: ${exit}`)),
         );
       });
     });

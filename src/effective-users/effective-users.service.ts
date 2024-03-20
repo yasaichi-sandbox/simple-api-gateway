@@ -2,9 +2,13 @@ import {
   FAKE_API_KIOTA_SERVICE_TOKEN,
   type FakeApiService,
 } from '@app/fake-api-kiota';
-import { Inject, Injectable } from '@nestjs/common';
-import { Effect, identity, Match, Schedule } from 'effect';
-import createError from 'http-errors';
+import {
+  HttpException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { Effect, Match, Schedule } from 'effect';
 
 @Injectable()
 export class EffectiveUsersService {
@@ -23,7 +27,10 @@ export class EffectiveUsersService {
             times: 3,
             until: ({ error }) =>
               Match.value(error).pipe(
-                Match.when({ responseStatusCode: 404 }, () => true),
+                Match.when(
+                  Match.instanceOf(HttpException),
+                  (httpException) => httpException.getStatus() === 404,
+                ),
                 Match.orElse(() => false),
               ),
           },
@@ -50,14 +57,12 @@ export class EffectiveUsersService {
         latestPosts: posts.map((post) => ({ id: post.id, title: post.title })),
       })),
       Effect.catchAll(({ error }) =>
-        Effect.fail(
-          Match.value(error).pipe(
-            Match.when(
-              { responseStatusCode: Match.number },
-              ({ responseStatusCode }) => createError(responseStatusCode),
-            ),
-            Match.orElse(identity),
+        Match.value(error).pipe(
+          Match.when(
+            () => error instanceof HttpException && error.getStatus() === 404,
+            () => Effect.fail(new NotFoundException()),
           ),
+          Match.orElse((unexpectedError) => Effect.die(unexpectedError)),
         )
       ),
     );
