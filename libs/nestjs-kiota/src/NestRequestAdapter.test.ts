@@ -1,5 +1,6 @@
 import {
   AnonymousAuthenticationProvider,
+  DefaultApiError,
   HttpMethod,
   type RequestAdapter,
   RequestInformation,
@@ -9,19 +10,24 @@ import { HttpException } from '@nestjs/common';
 import { beforeEach, describe, it } from '@std/testing/bdd';
 import assert from 'node:assert';
 import { fake, type SinonStubbedInstance, stub } from 'sinon';
-import { NestRequestAdapter } from './NestRequestAdapter.ts';
+import {
+  type DeserializedApiError,
+  NestRequestAdapter,
+} from './NestRequestAdapter.ts';
 
 describe(NestRequestAdapter.name, () => {
   let requestAdapter: SinonStubbedInstance<RequestAdapter>;
   let nestRequestAdapter: NestRequestAdapter;
 
-  const apiError = {
+  const apiError: DeserializedApiError = {
     additionalData: {},
     responseHeaders: {},
     responseStatusCode: 404,
     bar: 'bar',
   };
   const baseUrl = 'https://example.com';
+  const defaultApiError = new DefaultApiError();
+  defaultApiError.responseStatusCode = 401;
   const primitiveResponseModel = 42;
   const responseModel = { foo: 'foo' };
 
@@ -110,7 +116,7 @@ describe(NestRequestAdapter.name, () => {
 
     describe('when the wrapped method call fails', () => {
       beforeEach(() => {
-        requestAdapter.sendPrimitive.throwsException(apiError);
+        requestAdapter.sendPrimitive.throwsException(defaultApiError);
       });
 
       it('should throw `HttpException`', () => {
@@ -120,8 +126,11 @@ describe(NestRequestAdapter.name, () => {
             assert(requestAdapter.sendPrimitive.calledOnceWith(...args));
 
             assert(error instanceof HttpException);
-            assert.strictEqual(error.getStatus(), apiError.responseStatusCode);
-            assert.deepEqual(error.getResponse(), { bar: apiError.bar });
+            assert.strictEqual(
+              error.getStatus(),
+              defaultApiError.responseStatusCode,
+            );
+            assert.deepEqual(error.getResponse(), {});
 
             return true;
           },
@@ -196,7 +205,9 @@ describe(NestRequestAdapter.name, () => {
 
     describe('when the wrapped method call fails', () => {
       beforeEach(() => {
-        requestAdapter.sendCollectionOfPrimitive.throwsException(apiError);
+        requestAdapter.sendCollectionOfPrimitive.throwsException(
+          defaultApiError,
+        );
       });
 
       it('should throw `HttpException`', () => {
@@ -208,8 +219,11 @@ describe(NestRequestAdapter.name, () => {
             );
 
             assert(error instanceof HttpException);
-            assert.strictEqual(error.getStatus(), apiError.responseStatusCode);
-            assert.deepEqual(error.getResponse(), { bar: apiError.bar });
+            assert.strictEqual(
+              error.getStatus(),
+              defaultApiError.responseStatusCode,
+            );
+            assert.deepEqual(error.getResponse(), {});
 
             return true;
           },

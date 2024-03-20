@@ -1,5 +1,8 @@
 import {
+  type AdditionalDataHolder,
+  type ApiError,
   type BackingStoreFactory,
+  DefaultApiError,
   type ErrorMappings,
   type Parsable,
   type ParsableFactory,
@@ -11,10 +14,10 @@ import {
 import { HttpException } from '@nestjs/common';
 import { identity, Match } from 'effect';
 
-type ApiError = {
-  responseStatusCode: number;
-  [key: string]: unknown;
-};
+export type DeserializedApiError =
+  & Pick<ApiError, 'responseHeaders' | 'responseStatusCode'>
+  & AdditionalDataHolder
+  & { [key: string]: unknown };
 
 export class NestRequestAdapter implements RequestAdapter {
   constructor(private readonly requestAdapter: RequestAdapter) {}
@@ -122,19 +125,39 @@ export class NestRequestAdapter implements RequestAdapter {
     } catch (error) {
       throw Match.value(error).pipe(
         Match.when(
-          { responseStatusCode: Match.number },
-          (apiError) => this.convertToNestHttpException(apiError),
+          Match.instanceOf(DefaultApiError),
+          (
+            {
+              name: _name,
+              message: _message,
+              stack: _stack,
+              cause: _cause,
+              ...apiError
+            },
+          ) => this.convertToNestHttpException(apiError),
+        ),
+        Match.when(
+          {
+            responseStatusCode: Match.number,
+            responseHeaders: Match.any,
+          },
+          (apiError) =>
+            this.convertToNestHttpException({
+              ...apiError,
+              // NOTE: The following line is only for passing the type check
+              responseHeaders: undefined,
+            }),
         ),
         Match.orElse(identity),
       );
     }
   }
 
-  private convertToNestHttpException(apiError: ApiError) {
+  private convertToNestHttpException(apiError: DeserializedApiError) {
     const {
-      responseStatusCode,
       additionalData: _additionalData,
       responseHeaders: _responseHeaders,
+      responseStatusCode = 500,
       ...body
     } = apiError;
 
