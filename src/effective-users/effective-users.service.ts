@@ -8,7 +8,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Data, Effect, Match, Schedule } from 'effect';
+import { Data, Effect, Either, Match, Schedule } from 'effect';
 
 @Injectable()
 export class EffectiveUsersService {
@@ -66,5 +66,61 @@ export class EffectiveUsersService {
         )
       ),
     );
+  }
+
+  findOneWithLatestPostsGen(id: number) {
+    return Effect.gen(this, function* (_) {
+      const data = yield* _(Effect.either(
+        Effect.all([
+          Effect.retry(
+            Effect.tryPromise(() => this.apiService.users.byUserId(id).get()),
+            {
+              schedule: Schedule.exponential('100 millis'),
+              times: 3,
+              until: ({ error }) =>
+                Match.value(error).pipe(
+                  Match.when(
+                    Match.instanceOf(HttpException),
+                    (httpException) => httpException.getStatus() === 404,
+                  ),
+                  Match.orElse(() => false),
+                ),
+            },
+          ),
+          Effect.retry(
+            Effect.tryPromise(() =>
+              this.apiService.posts.get({
+                queryParameters: { userId: id, limit: 5 },
+              })
+            ),
+            { schedule: Schedule.exponential('100 millis'), times: 3 },
+          ),
+        ]),
+      ));
+
+      if (Either.isLeft(data)) {
+        return yield* _(
+          Match.value(data.left).pipe(
+            Match.when(
+              ({ error }) =>
+                error instanceof HttpException && error.getStatus() === 404,
+              () => Effect.fail(new NotFoundException()),
+            ),
+            Match.orElse((unexpectedError) => Effect.die(unexpectedError)),
+          ),
+        );
+      }
+
+      const [user, posts] = data.right;
+      if (!user || !posts) {
+        return yield* _(Effect.die('Something went wrong!'));
+      }
+
+      return {
+        id: user.id,
+        username: user.username,
+        latestPosts: posts.map((post) => ({ id: post.id, title: post.title })),
+      };
+    });
   }
 }
