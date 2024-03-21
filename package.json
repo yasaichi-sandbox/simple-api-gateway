@@ -17,7 +17,8 @@
     "test:watch": "deno task test --watch",
     "test:cov": "deno task test --coverage && deno coverage --exclude='/generated/' && deno coverage --exclude='/generated/' --lcov --output=coverage/lcov.info",
     "test:debug": "deno test --allow-env --allow-read=. --inspect-brk=127.0.0.1:9230",
-    "test:e2e": "deno test --allow-env --allow-net --allow-read=. --parallel test/"
+    "test:e2e": "deno test --allow-env --allow-net --allow-read=. --parallel test/",
+    "typecheck": "deno check src/main.ts"
   },
   "dependencies": {
     "@microsoft/kiota-abstractions": "1.0.0-preview.48",
