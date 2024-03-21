@@ -25,7 +25,7 @@
     "@microsoft/kiota-http-fetchlibrary": "1.0.0-preview.47",
     "@microsoft/kiota-serialization-form": "1.0.0-preview.37",
     "@microsoft/kiota-serialization-json": "1.0.0-preview.48",
-    "@microsoft/kiota-serialization-multipart": "1.0.0-preview.26",
+    "@microsoft/kiota-serialization-multipart": "1.0.0-preview.28",
     "@microsoft/kiota-serialization-text": "1.0.0-preview.44",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",

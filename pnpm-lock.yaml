@@ -18,8 +18,8 @@ dependencies:
     specifier: 1.0.0-preview.48
     version: 1.0.0-preview.48
   '@microsoft/kiota-serialization-multipart':
-    specifier: 1.0.0-preview.26
-    version: 1.0.0-preview.26
+    specifier: 1.0.0-preview.28
+    version: 1.0.0-preview.28
   '@microsoft/kiota-serialization-text':
     specifier: 1.0.0-preview.44
     version: 1.0.0-preview.44
@@ -480,6 +480,17 @@ packages:
       uuid: 9.0.1
     dev: false
 
+  /@microsoft/kiota-abstractions@1.0.0-preview.49:
+    resolution: {integrity: sha512-QBn+fG/48fV6AFJAa9bWNp+MdIgklUJ6wUTCO3RqLup9M8RamGuK0B57jCsqfd3ZTgK/xQRacpwTdoPy0xU8Vw==}
+    dependencies:
+      '@opentelemetry/api': 1.8.0
+      '@std-uritemplate/std-uritemplate': 0.0.55
+      guid-typescript: 1.0.9
+      tinyduration: 3.3.0
+      tslib: 2.6.2
+      uuid: 9.0.1
+    dev: false
+
   /@microsoft/kiota-http-fetchlibrary@1.0.0-preview.47:
     resolution: {integrity: sha512-2xz1uNuLo3qbtolwWmQ5wP4URad9N896s8lbXsAmviey+8nO2qfOtvILqSHQXkPKfrQXMlw5Q1rxJBeluODGoQ==}
     dependencies:
@@ -505,10 +516,10 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@microsoft/kiota-serialization-multipart@1.0.0-preview.26:
-    resolution: {integrity: sha512-0RlPYL6BzyPVN3PlWIApCnBKVxWGAMxkIuMSc9KYesLhcKboHNHjiiJyiatgGkSpHqZV3cQcg4bj2RYi/8+ITA==}
+  /@microsoft/kiota-serialization-multipart@1.0.0-preview.28:
+    resolution: {integrity: sha512-jRUug6G4/iA2sIF16buVdQVBTokplpsPudTiJsfyxXR057qeBdsEskrzWYlw2zqB0KzvWcNNt1i0GOu4amEgzQ==}
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.48
+      '@microsoft/kiota-abstractions': 1.0.0-preview.49
       guid-typescript: 1.0.9
       tslib: 2.6.2
     dev: false
