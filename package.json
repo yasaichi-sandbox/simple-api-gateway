@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@microsoft/kiota-abstractions": "1.0.0-preview.48",
-    "@microsoft/kiota-http-fetchlibrary": "1.0.0-preview.46",
+    "@microsoft/kiota-http-fetchlibrary": "1.0.0-preview.47",
     "@microsoft/kiota-serialization-form": "1.0.0-preview.36",
     "@microsoft/kiota-serialization-json": "1.0.0-preview.47",
     "@microsoft/kiota-serialization-multipart": "1.0.0-preview.26",
