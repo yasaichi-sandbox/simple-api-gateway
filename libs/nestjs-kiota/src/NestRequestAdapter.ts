@@ -12,12 +12,16 @@ import {
   type RequestInformation,
 } from '@microsoft/kiota-abstractions';
 import { HttpException } from '@nestjs/common';
-import { identity, Match } from 'effect';
+import { Data, identity, Match, Predicate } from 'effect';
+import type { SetNonNullable } from 'type-fest';
 
+// NOTE: Deserialized and thrown error actually has only `additionalData`, `responseHeaders`,
+// `responseStatusCode`, and the response body. For further details, see the following lines:
+// https://github.com/microsoft/kiota-typescript/blob/5ce4f291d27a8142a6df0716a38e06a765fb6563/packages/http/fetch/src/fetchRequestAdapter.ts#L343-L357
 export type DeserializedApiError =
-  & Pick<ApiError, 'responseHeaders' | 'responseStatusCode'>
   & AdditionalDataHolder
-  & { [key: string]: unknown };
+  & SetNonNullable<Pick<ApiError, 'responseHeaders' | 'responseStatusCode'>>
+  & Record<string, unknown>;
 
 export class NestRequestAdapter implements RequestAdapter {
   constructor(private readonly requestAdapter: RequestAdapter) {}
@@ -125,28 +129,8 @@ export class NestRequestAdapter implements RequestAdapter {
     } catch (error) {
       throw Match.value(error).pipe(
         Match.when(
-          Match.instanceOf(DefaultApiError),
-          (
-            {
-              name: _name,
-              message: _message,
-              stack: _stack,
-              cause: _cause,
-              ...apiError
-            },
-          ) => this.convertToNestHttpException(apiError),
-        ),
-        Match.when(
-          {
-            responseStatusCode: Match.number,
-            responseHeaders: Match.any,
-          },
-          (apiError) =>
-            this.convertToNestHttpException({
-              ...apiError,
-              // NOTE: The following line is only for passing the type check
-              responseHeaders: undefined,
-            }),
+          this.isApiError,
+          (apiError) => this.convertToNestHttpException(apiError),
         ),
         Match.orElse(identity),
       );
@@ -154,13 +138,32 @@ export class NestRequestAdapter implements RequestAdapter {
   }
 
   private convertToNestHttpException(apiError: DeserializedApiError) {
-    const {
-      additionalData: _additionalData,
-      responseHeaders: _responseHeaders,
-      responseStatusCode = 500,
-      ...body
-    } = apiError;
+    const [response, status] = Match.value(apiError).pipe(
+      Match.when(
+        Match.instanceOf(DefaultApiError),
+        ({ message, responseStatusCode }) =>
+          Data.tuple(message, responseStatusCode!),
+      ),
+      Match.orElse(
+        (
+          {
+            additionalData: _additionalData,
+            responseHeaders: _responseHeaders,
+            responseStatusCode,
+            ...responseBody
+          },
+        ) => Data.tuple(responseBody, responseStatusCode),
+      ),
+    );
 
-    return new HttpException(body, responseStatusCode, { cause: apiError });
+    return new HttpException(response, status, { cause: apiError });
+  }
+
+  private isApiError(input: unknown): input is DeserializedApiError {
+    return Predicate.isRecord(input) &&
+      Predicate.hasProperty(input, 'responseHeaders') &&
+      Predicate.isRecord(input.responseHeaders) &&
+      Predicate.hasProperty(input, 'responseStatusCode') &&
+      Predicate.isNumber(input.responseStatusCode);
   }
 }

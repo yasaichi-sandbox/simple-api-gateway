@@ -8,7 +8,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Effect, Match, Schedule } from 'effect';
+import { Data, Effect, Match, Schedule } from 'effect';
 
 @Injectable()
 export class EffectiveUsersService {
@@ -49,7 +49,7 @@ export class EffectiveUsersService {
       Effect.flatMap(([user, posts]) =>
         !user || !posts
           ? Effect.die('Something went wrong!')
-          : Effect.succeed([user, posts] as const)
+          : Effect.succeed(Data.tuple(user, posts))
       ),
       Effect.map(([user, posts]) => ({
         id: user.id,

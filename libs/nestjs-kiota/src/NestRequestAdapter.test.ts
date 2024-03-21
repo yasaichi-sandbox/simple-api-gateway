@@ -26,7 +26,7 @@ describe(NestRequestAdapter.name, () => {
     bar: 'bar',
   };
   const baseUrl = 'https://example.com';
-  const defaultApiError = new DefaultApiError();
+  const defaultApiError = new DefaultApiError('unexpected error type');
   defaultApiError.responseStatusCode = 401;
   const primitiveResponseModel = 42;
   const responseModel = { foo: 'foo' };
@@ -130,7 +130,7 @@ describe(NestRequestAdapter.name, () => {
               error.getStatus(),
               defaultApiError.responseStatusCode,
             );
-            assert.deepEqual(error.getResponse(), {});
+            assert.deepEqual(error.getResponse(), defaultApiError.message);
 
             return true;
           },
@@ -223,7 +223,7 @@ describe(NestRequestAdapter.name, () => {
               error.getStatus(),
               defaultApiError.responseStatusCode,
             );
-            assert.deepEqual(error.getResponse(), {});
+            assert.deepEqual(error.getResponse(), defaultApiError.message);
 
             return true;
           },
