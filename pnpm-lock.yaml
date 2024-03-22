@@ -34,7 +34,7 @@ dependencies:
     version: 10.3.4(@nestjs/common@10.3.4)(@nestjs/core@10.3.4)
   effect:
     specifier: ^2.4.0
-    version: 2.4.10
+    version: 2.4.11
   reflect-metadata:
     specifier: ^0.2.0
     version: 0.2.1
@@ -1509,8 +1509,8 @@ packages:
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  /effect@2.4.10:
-    resolution: {integrity: sha512-gWymyTJRCB1tZvwDkMhB3maHEMSddwl84yiB9kZfY+VEK0qL7B9lAUAij5rmBgGfeoZWpdEc5ycnf9VWXOtQRw==}
+  /effect@2.4.11:
+    resolution: {integrity: sha512-BMfpWloJdV8+lVGNCesOpE6e5k27nL7F5BiWtheOEyWEQiWkM6uLK6pQ1MK9bDmFELiqe961CHFqiIY9HymLFw==}
     dev: false
 
   /electron-to-chromium@1.4.681:
