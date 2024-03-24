@@ -23,7 +23,7 @@ describe(NestRequestAdapter.name, () => {
     additionalData: {},
     responseHeaders: {},
     responseStatusCode: 404,
-    bar: 'bar',
+    foo: 42,
   };
   const baseUrl = 'https://example.com';
   const defaultApiError = new DefaultApiError('unexpected error type');
@@ -83,7 +83,7 @@ describe(NestRequestAdapter.name, () => {
 
             assert(error instanceof HttpException);
             assert.strictEqual(error.getStatus(), apiError.responseStatusCode);
-            assert.deepEqual(error.getResponse(), { bar: apiError.bar });
+            assert.deepEqual(error.getResponse(), { foo: apiError.foo });
 
             return true;
           },
@@ -172,7 +172,7 @@ describe(NestRequestAdapter.name, () => {
 
             assert(error instanceof HttpException);
             assert.strictEqual(error.getStatus(), apiError.responseStatusCode);
-            assert.deepEqual(error.getResponse(), { bar: apiError.bar });
+            assert.deepEqual(error.getResponse(), { foo: apiError.foo });
 
             return true;
           },
@@ -266,7 +266,102 @@ describe(NestRequestAdapter.name, () => {
 
             assert(error instanceof HttpException);
             assert.strictEqual(error.getStatus(), apiError.responseStatusCode);
-            assert.deepEqual(error.getResponse(), { bar: apiError.bar });
+            assert.deepEqual(error.getResponse(), { foo: apiError.foo });
+
+            return true;
+          },
+        );
+      });
+    });
+  });
+
+  describe(NestRequestAdapter.prototype.sendEnum.name, () => {
+    const responseModel = { foo: 42 };
+    const args = [
+      new RequestInformation(HttpMethod.GET),
+      responseModel,
+      undefined,
+    ] as const;
+
+    describe('when the wrapped method call succeeds', () => {
+      beforeEach(() => {
+        requestAdapter.sendEnum.returns(Promise.resolve(responseModel.foo));
+      });
+
+      it('should return a response model the wrapped method returns', async () => {
+        assert.strictEqual(
+          await nestRequestAdapter.sendEnum(...args),
+          responseModel.foo,
+        );
+      });
+    });
+
+    describe('when the wrapped method call fails', () => {
+      beforeEach(() => {
+        requestAdapter.sendEnum.throwsException(defaultApiError);
+      });
+
+      it('should throw `HttpException`', () => {
+        assert.rejects(
+          nestRequestAdapter.sendEnum(...args),
+          (error) => {
+            assert(
+              requestAdapter.sendEnum.calledOnceWith(...args),
+            );
+
+            assert(error instanceof HttpException);
+            assert.strictEqual(
+              error.getStatus(),
+              defaultApiError.responseStatusCode,
+            );
+            assert.deepEqual(error.getResponse(), defaultApiError.message);
+
+            return true;
+          },
+        );
+      });
+    });
+  });
+
+  describe(NestRequestAdapter.prototype.sendCollectionOfEnum.name, () => {
+    const responseModel = { foo: 42 };
+    const args = [
+      new RequestInformation(HttpMethod.GET),
+      responseModel,
+      undefined,
+    ] as const;
+
+    describe('when the wrapped method call succeeds', () => {
+      beforeEach(() => {
+        requestAdapter.sendCollectionOfEnum.returns(
+          Promise.resolve([responseModel.foo]),
+        );
+      });
+
+      it('should return a response model collection the wrapped method returns', async () => {
+        assert.deepEqual(
+          await nestRequestAdapter.sendCollectionOfEnum(...args),
+          [responseModel.foo],
+        );
+      });
+    });
+
+    describe('when the wrapped method call fails', () => {
+      beforeEach(() => {
+        requestAdapter.sendCollectionOfEnum.throwsException(apiError);
+      });
+
+      it('should throw `HttpException`', () => {
+        assert.rejects(
+          nestRequestAdapter.sendCollectionOfEnum(...args),
+          (error) => {
+            assert(
+              requestAdapter.sendCollectionOfEnum.calledOnceWith(...args),
+            );
+
+            assert(error instanceof HttpException);
+            assert.strictEqual(error.getStatus(), apiError.responseStatusCode);
+            assert.deepEqual(error.getResponse(), { foo: apiError.foo });
 
             return true;
           },

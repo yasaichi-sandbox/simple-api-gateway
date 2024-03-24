@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@microsoft/kiota-abstractions':
-    specifier: 1.0.0-preview.48
-    version: 1.0.0-preview.48
+    specifier: 1.0.0-preview.49
+    version: 1.0.0-preview.49
   '@microsoft/kiota-http-fetchlibrary':
     specifier: 1.0.0-preview.48
     version: 1.0.0-preview.48
@@ -468,17 +468,6 @@ packages:
   /@lukeed/csprng@1.1.0:
     resolution: {integrity: sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==}
     engines: {node: '>=8'}
-
-  /@microsoft/kiota-abstractions@1.0.0-preview.48:
-    resolution: {integrity: sha512-a7JnqfQqdBKbmZoWJkWrARyIEALvNu7b8EJCXE7AaXT439AlrAQSPrqsjS7hock8cYUeHQZ3MFExkPDEF+jqog==}
-    dependencies:
-      '@opentelemetry/api': 1.8.0
-      '@std-uritemplate/std-uritemplate': 0.0.55
-      guid-typescript: 1.0.9
-      tinyduration: 3.3.0
-      tslib: 2.6.2
-      uuid: 9.0.1
-    dev: false
 
   /@microsoft/kiota-abstractions@1.0.0-preview.49:
     resolution: {integrity: sha512-QBn+fG/48fV6AFJAa9bWNp+MdIgklUJ6wUTCO3RqLup9M8RamGuK0B57jCsqfd3ZTgK/xQRacpwTdoPy0xU8Vw==}

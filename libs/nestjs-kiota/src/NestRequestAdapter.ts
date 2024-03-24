@@ -113,6 +113,34 @@ export class NestRequestAdapter implements RequestAdapter {
     );
   }
 
+  sendEnum<EnumObject extends Record<string, unknown>>(
+    requestInfo: RequestInformation,
+    enumObject: EnumObject,
+    errorMappings: ErrorMappings | undefined,
+  ) {
+    return this.catchApiError(() =>
+      this.requestAdapter.sendEnum(
+        requestInfo,
+        enumObject,
+        errorMappings,
+      )
+    );
+  }
+
+  sendCollectionOfEnum<EnumObject extends Record<string, unknown>>(
+    requestInfo: RequestInformation,
+    enumObject: EnumObject,
+    errorMappings: ErrorMappings | undefined,
+  ) {
+    return this.catchApiError(() =>
+      this.requestAdapter.sendCollectionOfEnum(
+        requestInfo,
+        enumObject,
+        errorMappings,
+      )
+    );
+  }
+
   enableBackingStore(
     backingStoreFactory?: BackingStoreFactory | undefined,
   ) {
