@@ -20,7 +20,7 @@ import type { SetNonNullable } from 'type-fest';
 // https://github.com/microsoft/kiota-typescript/blob/5ce4f291d27a8142a6df0716a38e06a765fb6563/packages/http/fetch/src/fetchRequestAdapter.ts#L343-L357
 export type DeserializedApiError =
   & AdditionalDataHolder
-  & SetNonNullable<Pick<ApiError, 'responseHeaders' | 'responseStatusCode'>>
+  & SetNonNullable<Omit<ApiError, keyof Error>>
   & Record<string, unknown>;
 
 export class NestRequestAdapter implements RequestAdapter {

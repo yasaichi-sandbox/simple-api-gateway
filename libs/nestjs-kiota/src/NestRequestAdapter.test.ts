@@ -25,11 +25,8 @@ describe(NestRequestAdapter.name, () => {
     responseStatusCode: 404,
     foo: 42,
   };
-  const baseUrl = 'https://example.com';
   const defaultApiError = new DefaultApiError('unexpected error type');
   defaultApiError.responseStatusCode = 401;
-  const primitiveResponseModel = 42;
-  const responseModel = { foo: 'foo' };
 
   beforeEach(() => {
     // TODO: Stop using FetchRequestAdapter
@@ -40,20 +37,25 @@ describe(NestRequestAdapter.name, () => {
   });
 
   describe('baseUrl', () => {
-    it('should return the same `baseUrl` value as the wrapped adapter has', () => {
-      requestAdapter.baseUrl = baseUrl;
-      assert.strictEqual(nestRequestAdapter.baseUrl, baseUrl);
-    });
-  });
+    const baseUrl = 'https://example.com';
 
-  describe('baseUrl=', () => {
-    it('should change the `baseUrl` value of the wrapped adapter', () => {
-      nestRequestAdapter.baseUrl = baseUrl;
-      assert.strictEqual(requestAdapter.baseUrl, baseUrl);
+    describe('getter', () => {
+      it('should return the same value as the wrapped adapter has', () => {
+        requestAdapter.baseUrl = baseUrl;
+        assert.strictEqual(nestRequestAdapter.baseUrl, baseUrl);
+      });
+    });
+
+    describe('setter', () => {
+      it('should change the value of the wrapped adapter', () => {
+        nestRequestAdapter.baseUrl = baseUrl;
+        assert.strictEqual(requestAdapter.baseUrl, baseUrl);
+      });
     });
   });
 
   describe('send', () => {
+    const responseModel = { foo: 42 };
     const args = [
       new RequestInformation(HttpMethod.GET),
       fake(),
@@ -92,7 +94,8 @@ describe(NestRequestAdapter.name, () => {
     });
   });
 
-  describe('sendPrimitive', () => {
+  describe(NestRequestAdapter.prototype.sendPrimitive.name, () => {
+    const primitiveResponseModel = 42;
     const args = [
       new RequestInformation(HttpMethod.GET),
       'number',
@@ -139,7 +142,8 @@ describe(NestRequestAdapter.name, () => {
     });
   });
 
-  describe('sendCollection', () => {
+  describe(NestRequestAdapter.prototype.sendCollection.name, () => {
+    const responseModel = { foo: 42 };
     const args = [
       new RequestInformation(HttpMethod.GET),
       fake(),
@@ -181,7 +185,8 @@ describe(NestRequestAdapter.name, () => {
     });
   });
 
-  describe('sendCollectionOfPrimitive', () => {
+  describe(NestRequestAdapter.prototype.sendCollectionOfPrimitive.name, () => {
+    const primitiveResponseModel = 42;
     const args = [
       new RequestInformation(HttpMethod.GET),
       'number',
@@ -232,7 +237,7 @@ describe(NestRequestAdapter.name, () => {
     });
   });
 
-  describe('sendNoResponseContent', () => {
+  describe(NestRequestAdapter.prototype.sendNoResponseContent.name, () => {
     const args = [
       new RequestInformation(HttpMethod.DELETE),
       undefined,
