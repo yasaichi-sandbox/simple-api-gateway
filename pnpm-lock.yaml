@@ -9,8 +9,8 @@ dependencies:
     specifier: 1.0.0-preview.50
     version: 1.0.0-preview.50
   '@microsoft/kiota-http-fetchlibrary':
-    specifier: 1.0.0-preview.48
-    version: 1.0.0-preview.48
+    specifier: 1.0.0-preview.49
+    version: 1.0.0-preview.49
   '@microsoft/kiota-serialization-form':
     specifier: 1.0.0-preview.38
     version: 1.0.0-preview.38
@@ -480,8 +480,8 @@ packages:
       uuid: 9.0.1
     dev: false
 
-  /@microsoft/kiota-http-fetchlibrary@1.0.0-preview.48:
-    resolution: {integrity: sha512-SSxaTDFIAmG/JwqJaQmbjfSlLXQUA9/PZfMhvyPmAd1y9QOpxMvd2xMxRpzB8W5foE1NIkihID6dTEGAeK2dZw==}
+  /@microsoft/kiota-http-fetchlibrary@1.0.0-preview.49:
+    resolution: {integrity: sha512-VMmks/fdDuARSSrSPeLsXAL07o//62YkrbwvIu4IA8elx+uwBrNmgGPVY/jk8FoSly8aW2ExlJxqch7EWwjXeQ==}
     dependencies:
       '@microsoft/kiota-abstractions': 1.0.0-preview.50
       '@opentelemetry/api': 1.8.0
