@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { SimpleUsersService } from './simple-users.service.ts';
 
 @Controller('simple/users')
@@ -6,7 +6,7 @@ export class SimpleUsersController {
   constructor(private readonly simpleUsersService: SimpleUsersService) {}
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.simpleUsersService.findOneWithLatestPosts(id);
   }
 }
