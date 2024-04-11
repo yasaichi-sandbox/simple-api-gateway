@@ -56,8 +56,8 @@ devDependencies:
     specifier: ^10.0.0
     version: 10.3.7(@nestjs/common@10.3.7)(@nestjs/core@10.3.7)(@nestjs/platform-express@10.3.7)
   '@std/testing':
-    specifier: npm:@jsr/std__testing@^0.221.0
-    version: /@jsr/std__testing@0.221.0
+    specifier: npm:@jsr/std__testing@^0.222.0
+    version: /@jsr/std__testing@0.222.0
   '@types/express':
     specifier: ^4.17.17
     version: 4.17.21
@@ -414,48 +414,48 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@jsr/std__assert@0.221.0:
-    resolution: {integrity: sha512-80CaXzJbEzFR3ywnCnht3JJatMSuJrTltVbNlOgsSwAN19zDKgYocBglG03WwwzFUaH+sMcUFvVX775ISauvxA==, tarball: https://npm.jsr.io/~/7/@jsr/std__assert/0.221.0.tgz}
+  /@jsr/std__assert@0.222.0:
+    resolution: {integrity: sha512-UlGzjB34BQ1PFcDsdNhosY3DL9Mv2wjCeExNY5VB430NqeIBE1jHPr1OvaW478Ked7Bl/u08Y5puBBNjE9FUNg==, tarball: https://npm.jsr.io/~/7/@jsr/std__assert/0.222.0.tgz}
     dependencies:
-      '@jsr/std__fmt': 0.221.0
+      '@jsr/std__fmt': 0.222.0
     dev: true
 
-  /@jsr/std__async@0.221.0:
-    resolution: {integrity: sha512-XeXfS1gLjpWqINkHdmv3Q4kZNHzYWkBtAGg4DbznnP1Jv0E6dpbku6dtBAWPcEeQEU+m/pGOWrmqwMDCFETexQ==, tarball: https://npm.jsr.io/~/7/@jsr/std__async/0.221.0.tgz}
+  /@jsr/std__async@0.222.0:
+    resolution: {integrity: sha512-e+uEoeUm6uaiPo8PiSG57V3clgUZwHCx9hFKa+kTD6VPRzGc5Ta13VRWmJ/O3PNKktBA3NVca32gimQTIFPEJg==, tarball: https://npm.jsr.io/~/7/@jsr/std__async/0.222.0.tgz}
     dependencies:
-      '@jsr/std__assert': 0.221.0
+      '@jsr/std__assert': 0.222.0
     dev: true
 
-  /@jsr/std__data-structures@0.221.0:
-    resolution: {integrity: sha512-4jOqFwkDYlFkgk7N+rgYvPzkTZWTMIVoErigGBmKAed0BP9uJH9N0OlHwQMQzKFRXWartIMqFfQFvVr8BoyNNQ==, tarball: https://npm.jsr.io/~/7/@jsr/std__data-structures/0.221.0.tgz}
+  /@jsr/std__data-structures@0.222.0:
+    resolution: {integrity: sha512-IipN3wdxNjLNoNp4E/eanihv2VP8cGqkHhesDS0dqPPbvdoWpa3WC7aS5Q8/Q1KR1sJOy6zVJhXkfa4uoX6CLQ==, tarball: https://npm.jsr.io/~/7/@jsr/std__data-structures/0.222.0.tgz}
     dev: true
 
-  /@jsr/std__fmt@0.221.0:
-    resolution: {integrity: sha512-fV88P+sJBWY5Z5CxYH8MAebL6ZYCoCsm3/hGi2yDDXP7lj8qsLM3IxcUrf472oZ47vvXWbj3o/0EJcPvJoA49A==, tarball: https://npm.jsr.io/~/7/@jsr/std__fmt/0.221.0.tgz}
+  /@jsr/std__fmt@0.222.0:
+    resolution: {integrity: sha512-vWF9GF2GiFMILj/m90w6JV2uSHQaLdVPuazvSce6bYgu0VC4Bhb97V9L0IpVAEibZze3Y7EqIQlFdXY9I/oINw==, tarball: https://npm.jsr.io/~/7/@jsr/std__fmt/0.222.0.tgz}
     dev: true
 
-  /@jsr/std__fs@0.221.0:
-    resolution: {integrity: sha512-OIfbF1FgDHiBYtqSN4bAOZPHNWE9t8tmIoOM3h7nC781N4OKDeLDu3zKdfKrRMKNrOthbnG8Hok3t+pXT67DyA==, tarball: https://npm.jsr.io/~/7/@jsr/std__fs/0.221.0.tgz}
+  /@jsr/std__fs@0.222.0:
+    resolution: {integrity: sha512-PoaPwemXW4c2ramt+8xZANDqh2X0cCLwpTpUleppwyuKBPN9Mhd/7YX+M5yM/ELx9ZsX21RFvygGySP8LsBwUw==, tarball: https://npm.jsr.io/~/7/@jsr/std__fs/0.222.0.tgz}
     dependencies:
-      '@jsr/std__assert': 0.221.0
-      '@jsr/std__path': 0.221.0
+      '@jsr/std__assert': 0.222.0
+      '@jsr/std__path': 0.222.0
     dev: true
 
-  /@jsr/std__path@0.221.0:
-    resolution: {integrity: sha512-zr0cpjHSkHytCmFkMR82urERTpeeADh206q0WjuTxWP5FlUluvCKVfuM7/dXRazQYqr9nEWIcN+MnFWXa4QD/Q==, tarball: https://npm.jsr.io/~/7/@jsr/std__path/0.221.0.tgz}
+  /@jsr/std__path@0.222.0:
+    resolution: {integrity: sha512-vS+rdXEK2GB94OYVsXXoaIat4dQ2ireGJsMKJzTbdGkHNxsmSeIJMNCBF7WVOMM6Q5NgYAicS/pZbWPPQ3capQ==, tarball: https://npm.jsr.io/~/7/@jsr/std__path/0.222.0.tgz}
     dependencies:
-      '@jsr/std__assert': 0.221.0
+      '@jsr/std__assert': 0.222.0
     dev: true
 
-  /@jsr/std__testing@0.221.0:
-    resolution: {integrity: sha512-aHfBpMdy3jBxbybuH8EL6k+9sFGL+cEteSc8Q9cYQYo1zJnqC2CwTyRA5QATC+kuC+HzxWKPkr5YXy5U141rVA==, tarball: https://npm.jsr.io/~/7/@jsr/std__testing/0.221.0.tgz}
+  /@jsr/std__testing@0.222.0:
+    resolution: {integrity: sha512-pdnzESCI5QH2up/29iY/XviWolEP2q3JmlTgT/UyLCCYCqg2wujMSNliOFKKUFMM/CB7WXUTjwW2Z2Ag12aaiQ==, tarball: https://npm.jsr.io/~/7/@jsr/std__testing/0.222.0.tgz}
     dependencies:
-      '@jsr/std__assert': 0.221.0
-      '@jsr/std__async': 0.221.0
-      '@jsr/std__data-structures': 0.221.0
-      '@jsr/std__fmt': 0.221.0
-      '@jsr/std__fs': 0.221.0
-      '@jsr/std__path': 0.221.0
+      '@jsr/std__assert': 0.222.0
+      '@jsr/std__async': 0.222.0
+      '@jsr/std__data-structures': 0.222.0
+      '@jsr/std__fmt': 0.222.0
+      '@jsr/std__fs': 0.222.0
+      '@jsr/std__path': 0.222.0
     dev: true
 
   /@ljharb/through@2.3.12:
