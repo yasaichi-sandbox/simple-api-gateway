@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@microsoft/kiota-abstractions':
-        specifier: 1.0.0-preview.50
-        version: 1.0.0-preview.50
+        specifier: 1.0.0-preview.51
+        version: 1.0.0-preview.51
       '@microsoft/kiota-http-fetchlibrary':
         specifier: 1.0.0-preview.49
         version: 1.0.0-preview.49
@@ -269,8 +269,8 @@ packages:
     resolution: {integrity: sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==}
     engines: {node: '>=8'}
 
-  '@microsoft/kiota-abstractions@1.0.0-preview.50':
-    resolution: {integrity: sha512-h30NZ/oPsPhIT+rmAmN2otMg06HgXzIYaJ568cl4MKuBdtKSNFjMnwcj+ed4NiiFZqNW5O6KwzTrkW260TrLIA==}
+  '@microsoft/kiota-abstractions@1.0.0-preview.51':
+    resolution: {integrity: sha512-8KDHB2lwjG0DThWca9HTwUKZnKaKXTkGeKSpxhMbI6c/jCzHHmXlu3KigVx5vKl3YLJwdXwrPb92jjNVz0934g==}
 
   '@microsoft/kiota-http-fetchlibrary@1.0.0-preview.49':
     resolution: {integrity: sha512-VMmks/fdDuARSSrSPeLsXAL07o//62YkrbwvIu4IA8elx+uwBrNmgGPVY/jk8FoSly8aW2ExlJxqch7EWwjXeQ==}
@@ -382,8 +382,8 @@ packages:
   '@sinonjs/text-encoding@0.7.2':
     resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
 
-  '@std-uritemplate/std-uritemplate@0.0.55':
-    resolution: {integrity: sha512-zawaTail2WdTwy3OkzJPzQR9cCcF1LNlvo8ymDeaV9QL7Ku5Lf31dtOZUbDD5c70YVDG5QYPwEsWa7wiWS4zzw==}
+  '@std-uritemplate/std-uritemplate@0.0.57':
+    resolution: {integrity: sha512-tl79y8TIh4Wc1gar9Cv5cnTls7IY1EDSuiI/gM0kShAj2HcyukilPu2ppFIosgBNItTuE+5N5TZzVFu6tBCaDw==}
 
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
@@ -2121,10 +2121,10 @@ snapshots:
 
   '@lukeed/csprng@1.1.0': {}
 
-  '@microsoft/kiota-abstractions@1.0.0-preview.50':
+  '@microsoft/kiota-abstractions@1.0.0-preview.51':
     dependencies:
       '@opentelemetry/api': 1.8.0
-      '@std-uritemplate/std-uritemplate': 0.0.55
+      '@std-uritemplate/std-uritemplate': 0.0.57
       guid-typescript: 1.0.9
       tinyduration: 3.3.0
       tslib: 2.6.2
@@ -2132,32 +2132,32 @@ snapshots:
 
   '@microsoft/kiota-http-fetchlibrary@1.0.0-preview.49':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.50
+      '@microsoft/kiota-abstractions': 1.0.0-preview.51
       '@opentelemetry/api': 1.8.0
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
   '@microsoft/kiota-serialization-form@1.0.0-preview.39':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.50
+      '@microsoft/kiota-abstractions': 1.0.0-preview.51
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
   '@microsoft/kiota-serialization-json@1.0.0-preview.50':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.50
+      '@microsoft/kiota-abstractions': 1.0.0-preview.51
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
   '@microsoft/kiota-serialization-multipart@1.0.0-preview.28':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.50
+      '@microsoft/kiota-abstractions': 1.0.0-preview.51
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
   '@microsoft/kiota-serialization-text@1.0.0-preview.47':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.50
+      '@microsoft/kiota-abstractions': 1.0.0-preview.51
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
@@ -2278,7 +2278,7 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.2': {}
 
-  '@std-uritemplate/std-uritemplate@0.0.55': {}
+  '@std-uritemplate/std-uritemplate@0.0.57': {}
 
   '@types/body-parser@1.19.5':
     dependencies:
