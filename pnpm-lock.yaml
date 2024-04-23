@@ -15,8 +15,8 @@ importers:
         specifier: 1.0.0-preview.50
         version: 1.0.0-preview.50
       '@microsoft/kiota-serialization-form':
-        specifier: 1.0.0-preview.39
-        version: 1.0.0-preview.39
+        specifier: 1.0.0-preview.40
+        version: 1.0.0-preview.40
       '@microsoft/kiota-serialization-json':
         specifier: 1.0.0-preview.50
         version: 1.0.0-preview.50
@@ -275,8 +275,8 @@ packages:
   '@microsoft/kiota-http-fetchlibrary@1.0.0-preview.50':
     resolution: {integrity: sha512-brGamMPpgVL0bZ/zIeJ9XQMIpOEN8JnnmpY1eEE4sDjzthqbR9f4y9QkKrZIFp2mq4/Wv7RUikg14jb5rrCvjA==}
 
-  '@microsoft/kiota-serialization-form@1.0.0-preview.39':
-    resolution: {integrity: sha512-R7ZR0aMOuRCqefelRRzMTzLVhx7A4AynDkftEn2qunag7ouVpp6kG/PSRy9TSQjTwyZynCaVChSFWsRbc3LRQA==}
+  '@microsoft/kiota-serialization-form@1.0.0-preview.40':
+    resolution: {integrity: sha512-2N7peosTV8YiTOrE4snCfH6FYrWhptAjwE71FPIX6/ntW9WXs0t8nHgzYPYesF0XEF3xg+3WzuDmkAvjRS7RGA==}
 
   '@microsoft/kiota-serialization-json@1.0.0-preview.50':
     resolution: {integrity: sha512-IdhUVK3wH/3zgbTeg8xgd6RZncFQzkE1xqP0bCNEowg+OkXToxvrXi4b/u5t1VMHZNL+9SI/qH32x00GZhHK7Q==}
@@ -2138,7 +2138,7 @@ snapshots:
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
-  '@microsoft/kiota-serialization-form@1.0.0-preview.39':
+  '@microsoft/kiota-serialization-form@1.0.0-preview.40':
     dependencies:
       '@microsoft/kiota-abstractions': 1.0.0-preview.51
       guid-typescript: 1.0.9
