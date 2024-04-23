@@ -12,8 +12,8 @@ importers:
         specifier: 1.0.0-preview.51
         version: 1.0.0-preview.51
       '@microsoft/kiota-http-fetchlibrary':
-        specifier: 1.0.0-preview.49
-        version: 1.0.0-preview.49
+        specifier: 1.0.0-preview.50
+        version: 1.0.0-preview.50
       '@microsoft/kiota-serialization-form':
         specifier: 1.0.0-preview.39
         version: 1.0.0-preview.39
@@ -272,8 +272,8 @@ packages:
   '@microsoft/kiota-abstractions@1.0.0-preview.51':
     resolution: {integrity: sha512-8KDHB2lwjG0DThWca9HTwUKZnKaKXTkGeKSpxhMbI6c/jCzHHmXlu3KigVx5vKl3YLJwdXwrPb92jjNVz0934g==}
 
-  '@microsoft/kiota-http-fetchlibrary@1.0.0-preview.49':
-    resolution: {integrity: sha512-VMmks/fdDuARSSrSPeLsXAL07o//62YkrbwvIu4IA8elx+uwBrNmgGPVY/jk8FoSly8aW2ExlJxqch7EWwjXeQ==}
+  '@microsoft/kiota-http-fetchlibrary@1.0.0-preview.50':
+    resolution: {integrity: sha512-brGamMPpgVL0bZ/zIeJ9XQMIpOEN8JnnmpY1eEE4sDjzthqbR9f4y9QkKrZIFp2mq4/Wv7RUikg14jb5rrCvjA==}
 
   '@microsoft/kiota-serialization-form@1.0.0-preview.39':
     resolution: {integrity: sha512-R7ZR0aMOuRCqefelRRzMTzLVhx7A4AynDkftEn2qunag7ouVpp6kG/PSRy9TSQjTwyZynCaVChSFWsRbc3LRQA==}
@@ -1643,6 +1643,7 @@ packages:
   superagent@8.1.2:
     resolution: {integrity: sha512-6WTxW1EB6yCxV5VFOIPQruWGHqc3yI7hEmZK6h+pyk69Lk/Ut7rLUY6W/ONF2MjBuGjvmMiIpsrVJ2vjrHlslA==}
     engines: {node: '>=6.4.0 <13 || >=14'}
+    deprecated: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
 
   supertest@6.3.4:
     resolution: {integrity: sha512-erY3HFDG0dPnhw4U+udPfrzXa4xhSG+n4rxfRuZWCUvjFWwKl+OxWf/7zk50s84/fAAs7vf5QAb9uRa0cCykxw==}
@@ -2130,7 +2131,7 @@ snapshots:
       tslib: 2.6.2
       uuid: 9.0.1
 
-  '@microsoft/kiota-http-fetchlibrary@1.0.0-preview.49':
+  '@microsoft/kiota-http-fetchlibrary@1.0.0-preview.50':
     dependencies:
       '@microsoft/kiota-abstractions': 1.0.0-preview.51
       '@opentelemetry/api': 1.8.0
