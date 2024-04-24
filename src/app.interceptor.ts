@@ -6,7 +6,7 @@ import {
   Logger,
   NestInterceptor,
 } from '@nestjs/common';
-import { Effect, identity, Match, unsafeCoerce } from 'effect';
+import { Effect, Exit, identity, Match, unsafeCoerce } from 'effect';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -27,17 +27,15 @@ export class AppInterceptor implements NestInterceptor {
       .pipe(
         map((value) =>
           Match.value(value).pipe(
-            Match.when(() => Effect.isEffect(value), async (effect) =>
-              Match.value(
+            Match.not(Effect.isEffect, identity), // Just return the value if it's not an effect
+            Match.orElse(async (effect) =>
+              Exit.match(
                 await Effect.runPromiseExit<unknown, Error>(
                   unsafeCoerce(effect),
                 ),
-              ).pipe(
-                Match.tag('Success', (success) =>
-                  success.value),
-                Match.tag(
-                  'Failure',
-                  ({ cause }) =>
+                {
+                  onSuccess: (value) => value,
+                  onFailure: (cause) =>
                     Match.value(cause).pipe(
                       Match.tag('Fail', ({ error }) => {
                         throw error;
@@ -47,10 +45,9 @@ export class AppInterceptor implements NestInterceptor {
                         throw new InternalServerErrorException();
                       }),
                     ),
-                ),
-                Match.exhaustive,
-              )),
-            Match.orElse(identity), // Just return the value if it's not an effect
+                },
+              )
+            ),
           )
         ),
       );
