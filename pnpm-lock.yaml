@@ -24,8 +24,8 @@ importers:
         specifier: 1.0.0-preview.29
         version: 1.0.0-preview.29
       '@microsoft/kiota-serialization-text':
-        specifier: 1.0.0-preview.47
-        version: 1.0.0-preview.47
+        specifier: 1.0.0-preview.48
+        version: 1.0.0-preview.48
       '@nestjs/common':
         specifier: ^10.0.0
         version: 10.3.8(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -284,8 +284,8 @@ packages:
   '@microsoft/kiota-serialization-multipart@1.0.0-preview.29':
     resolution: {integrity: sha512-3VjbYQAZ5JB61890Iqk9BARneCTfCuNBC9isMV4kk+8gyE/L/zyXXoJvmdXspYhOELAsWyCPXiiN7Fa87ws1Ww==}
 
-  '@microsoft/kiota-serialization-text@1.0.0-preview.47':
-    resolution: {integrity: sha512-AxNilSn86m5LB/Z1s89WFD+QZFq+ySgIHX1RtwfPzOMbKglEECpMUMDMqRPRpkKpA6jd/BPJ74dAap92PTurBQ==}
+  '@microsoft/kiota-serialization-text@1.0.0-preview.48':
+    resolution: {integrity: sha512-aiC7Fic1gn8xo0JsdO5gSQ34bwtJlYhMKKlQgTBwYoxA01zzLSn2rkSpqzc1JxTZoRyEqIviBR9dL8IrBOErow==}
 
   '@nestjs/cli@10.3.2':
     resolution: {integrity: sha512-aWmD1GLluWrbuC4a1Iz/XBk5p74Uj6nIVZj6Ov03JbTfgtWqGFLtXuMetvzMiHxfrHehx/myt2iKAPRhKdZvTg==}
@@ -2156,7 +2156,7 @@ snapshots:
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
-  '@microsoft/kiota-serialization-text@1.0.0-preview.47':
+  '@microsoft/kiota-serialization-text@1.0.0-preview.48':
     dependencies:
       '@microsoft/kiota-abstractions': 1.0.0-preview.51
       guid-typescript: 1.0.9
