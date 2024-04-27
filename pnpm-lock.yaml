@@ -37,7 +37,7 @@ dependencies:
     version: 4.3.1
   effect:
     specifier: ^3.0.0
-    version: 3.0.6
+    version: 3.0.7
   reflect-metadata:
     specifier: ^0.2.0
     version: 0.2.2
@@ -1507,8 +1507,8 @@ packages:
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  /effect@3.0.6:
-    resolution: {integrity: sha512-mm83ZhJnSH1BRnnWnVxk0w+gMN1WPaxq2LEoxATv2esCtd8bSq9BFLuWysWWmnEO3Q8wkGIcjmeIxZymHo2qZw==}
+  /effect@3.0.7:
+    resolution: {integrity: sha512-VlEpWUc3IBc7k9NUdsdbh7cnGFNIdMpIoUFbbiVkt304d40pSr6Zadnr5Tk8m1cniqOLo4SXSZLw0M6f7N17Hg==}
     dev: false
 
   /electron-to-chromium@1.4.681:
