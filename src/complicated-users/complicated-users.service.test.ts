@@ -45,7 +45,7 @@ describe(ComplicatedUsersService.name, () => {
           service = module.get(ComplicatedUsersService);
         });
 
-        it('should throw `HttpException` serialized into an empty JSON response', () => {
+        it('should throw `HttpException` being serialized into an empty JSON response with 404 status', () => {
           assert.rejects(
             () => service.findOneWithLatestPosts(userId),
             (err) =>

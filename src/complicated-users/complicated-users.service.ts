@@ -21,7 +21,10 @@ export class ComplicatedUsersService {
           } catch (error) {
             if (error instanceof HttpException && error.getStatus() === 404) {
               bail(error);
+              return;
             }
+
+            throw error;
           }
         },
         { retries: 3 },
