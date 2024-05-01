@@ -4,13 +4,13 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { beforeEach, describe, it } from '@std/testing/bdd';
 import fetchMock from 'fetch-mock';
 import assert from 'node:assert';
-import { SimpleUsersService } from './simple-users.service.ts';
+import { ComplicatedUsersService } from './complicated-users.service.ts';
 
-describe(SimpleUsersService.name, () => {
-  let service: SimpleUsersService;
+describe(ComplicatedUsersService.name, () => {
+  let service: ComplicatedUsersService;
 
   describe(
-    SimpleUsersService.prototype.findOneWithLatestPosts.name,
+    ComplicatedUsersService.prototype.findOneWithLatestPosts.name,
     () => {
       const userId = 42;
       const user: User = {
@@ -39,10 +39,10 @@ describe(SimpleUsersService.name, () => {
                   }),
               }),
             ],
-            providers: [SimpleUsersService],
+            providers: [ComplicatedUsersService],
           }).compile();
 
-          service = module.get(SimpleUsersService);
+          service = module.get(ComplicatedUsersService);
         });
 
         it('should throw `HttpException` being serialized into an empty JSON response with 404 status', () => {
@@ -68,10 +68,10 @@ describe(SimpleUsersService.name, () => {
                   }),
               }),
             ],
-            providers: [SimpleUsersService],
+            providers: [ComplicatedUsersService],
           }).compile();
 
-          service = module.get(SimpleUsersService);
+          service = module.get(ComplicatedUsersService);
         });
 
         it('should return a specified user with the latest posts', async () => {
