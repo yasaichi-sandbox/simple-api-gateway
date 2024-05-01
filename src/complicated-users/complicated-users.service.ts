@@ -27,14 +27,9 @@ export class ComplicatedUsersService {
             throw error;
           }
         },
-        { retries: 3 },
       ),
-      retry(
-        () =>
-          this.apiService.posts.get({
-            queryParameters: { userId: id, limit: 5 },
-          }),
-        { retries: 3 },
+      retry(() =>
+        this.apiService.posts.get({ queryParameters: { userId: id, limit: 5 } })
       ),
     ]);
 
