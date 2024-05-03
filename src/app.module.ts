@@ -7,6 +7,7 @@ import { AppInterceptor } from './app.interceptor.ts';
 import { AppService } from './app.service.ts';
 import { ComplicatedUsersModule } from './complicated-users/complicated-users.module.ts';
 import { EffectiveUsersModule } from './effective-users/effective-users.module.ts';
+import { NaiveUsersModule } from './naive-users/naive-users.module.ts';
 import { SimpleUsersModule } from './simple-users/simple-users.module.ts';
 
 @Module({
@@ -15,6 +16,7 @@ import { SimpleUsersModule } from './simple-users/simple-users.module.ts';
     FakeApiOpenapiGenModule.register({ global: true }),
     ComplicatedUsersModule,
     EffectiveUsersModule,
+    NaiveUsersModule,
     SimpleUsersModule,
   ],
   controllers: [AppController],
