@@ -10,6 +10,7 @@
   },
   "imports": {
     "@app/fake-api-kiota": "./libs/fake-api-kiota/src/index.ts",
+    "@app/fake-api-openapi-gen": "./libs/fake-api-openapi-gen/src/index.ts",
     "@app/nestjs-kiota": "./libs/nestjs-kiota/src/index.ts"
   },
   "lint": {
