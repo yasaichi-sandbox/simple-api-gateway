@@ -5,13 +5,13 @@ import { beforeEach, describe, it } from '@std/testing/bdd';
 import { Effect, Exit, Match } from 'effect';
 import fetchMock from 'fetch-mock';
 import assert from 'node:assert';
-import { EffectiveUsersService } from './effective-users.service.ts';
+import { RealworldUsersService } from './realworld-users.service.ts';
 
-describe(EffectiveUsersService.name, () => {
-  let service: EffectiveUsersService;
+describe(RealworldUsersService.name, () => {
+  let service: RealworldUsersService;
 
   describe(
-    EffectiveUsersService.prototype.findOneWithLatestPosts.name,
+    RealworldUsersService.prototype.findOneWithLatestPosts.name,
     () => {
       const userId = 42;
       const user: User = {
@@ -40,10 +40,10 @@ describe(EffectiveUsersService.name, () => {
                   }),
               }),
             ],
-            providers: [EffectiveUsersService],
+            providers: [RealworldUsersService],
           }).compile();
 
-          service = module.get(EffectiveUsersService);
+          service = module.get(RealworldUsersService);
         });
 
         it('should throw `HttpException` being serialized into an empty JSON response with 404 status', async () => {
@@ -85,10 +85,10 @@ describe(EffectiveUsersService.name, () => {
                   }),
               }),
             ],
-            providers: [EffectiveUsersService],
+            providers: [RealworldUsersService],
           }).compile();
 
-          service = module.get(EffectiveUsersService);
+          service = module.get(RealworldUsersService);
         });
 
         it('should return a specified user with the latest posts', async () => {
