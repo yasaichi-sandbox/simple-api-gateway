@@ -33,7 +33,9 @@ export class EffectiveUsersService {
     ).pipe(
       Effect.catchAll(({ error }) =>
         error instanceof ApiException && error.code === 404
-          ? Effect.fail(new NotFoundException(undefined, { cause: error }))
+          ? Effect.fail(
+            new NotFoundException('User not found', { cause: error }),
+          )
           : Effect.die(error)
       ),
       Effect.map(([user, posts]) => ({

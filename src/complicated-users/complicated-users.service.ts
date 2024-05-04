@@ -23,7 +23,7 @@ export class ComplicatedUsersService {
           } catch (error) {
             if (error instanceof ApiException && error.code === 404) {
               throw new AbortError(
-                new NotFoundException(undefined, { cause: error }),
+                new NotFoundException('User not found', { cause: error }),
               );
             }
 
