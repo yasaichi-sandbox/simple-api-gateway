@@ -31,7 +31,7 @@ export class NaiveUsersService {
       };
     } catch (error) {
       if (error instanceof ApiException && error.code === 404) {
-        throw new NotFoundException();
+        throw new NotFoundException(undefined, { cause: error });
       }
 
       throw error;

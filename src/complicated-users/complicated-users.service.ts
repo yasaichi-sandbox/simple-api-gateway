@@ -22,7 +22,9 @@ export class ComplicatedUsersService {
             return await this.userApiService.getUserById({ userId: id });
           } catch (error) {
             if (error instanceof ApiException && error.code === 404) {
-              throw new AbortError(new NotFoundException());
+              throw new AbortError(
+                new NotFoundException(undefined, { cause: error }),
+              );
             }
 
             throw error;
