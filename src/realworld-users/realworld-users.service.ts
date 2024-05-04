@@ -1,44 +1,57 @@
 import {
-  FAKE_API_KIOTA_SERVICE_TOKEN,
-  type FakeApiService,
-} from '@app/fake-api-kiota';
-import { HttpException, Inject, Injectable } from '@nestjs/common';
+  ApiException,
+  PostApiService,
+  UserApiService,
+} from '@app/fake-api-openapi-gen';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Effect } from 'effect';
+import { type FindUserResponseDto } from './dto/find-user-response.dto.ts';
 
 @Injectable()
 export class RealworldUsersService {
   constructor(
-    @Inject(FAKE_API_KIOTA_SERVICE_TOKEN) private readonly apiService:
-      FakeApiService,
+    private readonly postApiService: PostApiService,
+    private readonly userApiService: UserApiService,
   ) {}
 
-  findOneWithLatestPosts(id: number) {
+  findOne(id: number): Effect.Effect<FindUserResponseDto, NotFoundException> {
     return Effect.gen(this, function* () {
-      const [user, posts] = yield* Effect.all([
-        Effect
-          .tryPromise(() => this.apiService.users.byUserId(id).get())
-          .pipe(
-            Effect.retry({
-              until: ({ error }) =>
-                error instanceof HttpException && error.getStatus() === 404,
-            }),
+      const [user, posts] = yield* Effect.all(
+        [
+          Effect.retry(
+            Effect.tryPromise(() =>
+              this.userApiService.getUserById({ userId: id })
+            ),
+            {
+              until: (error) =>
+                error instanceof ApiException && error.code === 404,
+              times: 3,
+            },
           ),
-        Effect
-          .tryPromise(() =>
-            this.apiService.posts.get({
-              queryParameters: { userId: id, limit: 5 },
-            })
-          ).pipe(Effect.retry({})),
-      ]);
+          Effect.retry(
+            Effect.tryPromise(() =>
+              this.postApiService.getPosts({ userId: id, limit: 5 })
+            ),
+            { times: 3 },
+          ),
+        ],
+        { concurrency: 'unbounded' },
+      );
 
       return {
-        id: user!.id,
-        username: user!.username,
-        latestPosts: posts!.map((post) => ({
+        id: user.id,
+        username: user.username,
+        latestPosts: posts.map((post) => ({
           id: post.id,
           title: post.title,
         })),
       };
-    });
+    }).pipe(
+      Effect.catchAll(({ error }) =>
+        error instanceof ApiException && error.code === 404
+          ? Effect.fail(new NotFoundException(undefined, { cause: error }))
+          : Effect.die(error)
+      ),
+    );
   }
 }

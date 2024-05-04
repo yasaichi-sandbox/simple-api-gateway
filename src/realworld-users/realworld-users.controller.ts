@@ -7,6 +7,6 @@ export class RealworldUsersController {
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.realworldUsersService.findOneWithLatestPosts(id);
+    return this.realworldUsersService.findOne(id);
   }
 }
