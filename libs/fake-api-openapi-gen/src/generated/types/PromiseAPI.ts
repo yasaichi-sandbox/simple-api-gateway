@@ -3,18 +3,18 @@ import { Configuration} from '../configuration.ts'
 
 import { Post } from '../models/Post.ts';
 import { User } from '../models/User.ts';
-import { ObservableDefaultApi } from './ObservableAPI.ts';
+import { ObservablePostApi } from './ObservableAPI.ts';
 
-import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi.ts";
-export class PromiseDefaultApi {
-    private api: ObservableDefaultApi
+import { PostApiRequestFactory, PostApiResponseProcessor} from "../apis/PostApi.ts";
+export class PromisePostApi {
+    private api: ObservablePostApi
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: DefaultApiRequestFactory,
-        responseProcessor?: DefaultApiResponseProcessor
+        requestFactory?: PostApiRequestFactory,
+        responseProcessor?: PostApiResponseProcessor
     ) {
-        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservablePostApi(configuration, requestFactory, responseProcessor);
     }
 
     /**
@@ -22,8 +22,8 @@ export class PromiseDefaultApi {
      * @param userId Filter results by user ID
      * @param limit Limit results by number
      */
-    public postsGetWithHttpInfo(userId?: number, limit?: number, _options?: Configuration): Promise<HttpInfo<Array<Post>>> {
-        const result = this.api.postsGetWithHttpInfo(userId, limit, _options);
+    public getPostsWithHttpInfo(userId?: number, limit?: number, _options?: Configuration): Promise<HttpInfo<Array<Post>>> {
+        const result = this.api.getPostsWithHttpInfo(userId, limit, _options);
         return result.toPromise();
     }
 
@@ -32,8 +32,36 @@ export class PromiseDefaultApi {
      * @param userId Filter results by user ID
      * @param limit Limit results by number
      */
-    public postsGet(userId?: number, limit?: number, _options?: Configuration): Promise<Array<Post>> {
-        const result = this.api.postsGet(userId, limit, _options);
+    public getPosts(userId?: number, limit?: number, _options?: Configuration): Promise<Array<Post>> {
+        const result = this.api.getPosts(userId, limit, _options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableUserApi } from './ObservableAPI.ts';
+
+import { UserApiRequestFactory, UserApiResponseProcessor} from "../apis/UserApi.ts";
+export class PromiseUserApi {
+    private api: ObservableUserApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: UserApiRequestFactory,
+        responseProcessor?: UserApiResponseProcessor
+    ) {
+        this.api = new ObservableUserApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get user by ID
+     * @param userId key: id of user
+     */
+    public getUserByIdWithHttpInfo(userId: number, _options?: Configuration): Promise<HttpInfo<User>> {
+        const result = this.api.getUserByIdWithHttpInfo(userId, _options);
         return result.toPromise();
     }
 
@@ -41,17 +69,8 @@ export class PromiseDefaultApi {
      * Get user by ID
      * @param userId key: id of user
      */
-    public usersUserIdGetWithHttpInfo(userId: number, _options?: Configuration): Promise<HttpInfo<User>> {
-        const result = this.api.usersUserIdGetWithHttpInfo(userId, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * Get user by ID
-     * @param userId key: id of user
-     */
-    public usersUserIdGet(userId: number, _options?: Configuration): Promise<User> {
-        const result = this.api.usersUserIdGet(userId, _options);
+    public getUserById(userId: number, _options?: Configuration): Promise<User> {
+        const result = this.api.getUserById(userId, _options);
         return result.toPromise();
     }
 

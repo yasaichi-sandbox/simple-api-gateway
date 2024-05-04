@@ -1,9 +1,9 @@
 import {
-  ApiException,
   FakeApiOpenapiGenModule,
   type Post,
   type User,
 } from '@app/fake-api-openapi-gen';
+import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { afterEach, beforeEach, describe, it } from '@std/testing/bdd';
 import fetchMock from 'fetch-mock';
@@ -15,7 +15,7 @@ describe(NaiveUsersService.name, () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [FakeApiOpenapiGenModule.register()],
+      imports: [FakeApiOpenapiGenModule.register({})],
       providers: [NaiveUsersService],
     }).compile();
 
@@ -47,15 +47,13 @@ describe(NaiveUsersService.name, () => {
         beforeEach(() => {
           fetchMock
             .get(`path:/users/${userId}`, { body: {}, status: 404 })
-            .getOnce('path:/posts', posts, {
-              query: { userId, limit: 5 },
-            });
+            .getOnce('path:/posts', posts, { query: { userId, limit: 5 } });
         });
 
-        it('should throw `ApiException` with 404 status code', () => {
+        it('should throw `NotFoundException`', () => {
           assert.rejects(
             () => service.findOne(userId),
-            (err) => err instanceof ApiException && err.code === 404,
+            (err) => err instanceof NotFoundException,
           );
         });
       });
@@ -64,9 +62,7 @@ describe(NaiveUsersService.name, () => {
         beforeEach(() => {
           fetchMock
             .get(`path:/users/${userId}`, user)
-            .getOnce('path:/posts', posts, {
-              query: { userId, limit: 5 },
-            });
+            .getOnce('path:/posts', posts, { query: { userId, limit: 5 } });
         });
 
         it('should return a specified user with the latest posts', async () => {

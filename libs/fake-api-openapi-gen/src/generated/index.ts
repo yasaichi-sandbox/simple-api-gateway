@@ -9,7 +9,8 @@ export * from './servers.ts';
 
 export type { PromiseMiddleware as Middleware } from './middleware.ts';
 export {
-  type DefaultApiPostsGetRequest,
-  type DefaultApiUsersUserIdGetRequest,
-  ObjectDefaultApi as DefaultApi,
+  ObjectPostApi as PostApi,
+  ObjectUserApi as UserApi,
+  type PostApiGetPostsRequest,
+  type UserApiGetUserByIdRequest,
 } from './types/ObjectParamAPI.ts';
