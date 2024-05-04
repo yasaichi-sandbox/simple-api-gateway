@@ -1,7 +1,11 @@
-import { FakeApiKiotaModule, type Post, type User } from '@app/fake-api-kiota';
-import { HttpException } from '@nestjs/common';
+import {
+  FakeApiOpenapiGenModule,
+  type Post,
+  type User,
+} from '@app/fake-api-openapi-gen';
+import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { beforeEach, describe, it } from '@std/testing/bdd';
+import { afterEach, beforeEach, describe, it } from '@std/testing/bdd';
 import { Effect, Exit, Match } from 'effect';
 import fetchMock from 'fetch-mock';
 import assert from 'node:assert';
@@ -10,8 +14,17 @@ import { EffectiveUsersService } from './effective-users.service.ts';
 describe(EffectiveUsersService.name, () => {
   let service: EffectiveUsersService;
 
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [FakeApiOpenapiGenModule.register({})],
+      providers: [EffectiveUsersService],
+    }).compile();
+
+    service = module.get(EffectiveUsersService);
+  });
+
   describe(
-    EffectiveUsersService.prototype.findOneWithLatestPosts.name,
+    EffectiveUsersService.prototype.findOne.name,
     () => {
       const userId = 42;
       const user: User = {
@@ -27,29 +40,21 @@ describe(EffectiveUsersService.name, () => {
         body: 'post 1 body',
       }];
 
-      describe('when the user is not found', () => {
-        beforeEach(async () => {
-          const module: TestingModule = await Test.createTestingModule({
-            imports: [
-              FakeApiKiotaModule.register({
-                customFetch: fetchMock
-                  .sandbox()
-                  .get(`path:/users/${userId}`, { body: {}, status: 404 })
-                  .getOnce('path:/posts', posts, {
-                    query: { userId, limit: 5 },
-                  }),
-              }),
-            ],
-            providers: [EffectiveUsersService],
-          }).compile();
+      afterEach(() => {
+        fetchMock.restore();
+      });
 
-          service = module.get(EffectiveUsersService);
+      describe('when the user is not found', () => {
+        beforeEach(() => {
+          fetchMock
+            .get(`path:/users/${userId}`, { body: {}, status: 404 })
+            .getOnce('path:/posts', posts, { query: { userId, limit: 5 } });
         });
 
-        it('should throw `HttpException` being serialized into an empty JSON response with 404 status', async () => {
+        it('should throw `NotFoundException`', async () => {
           Exit.match(
             await Effect.runPromiseExit(
-              service.findOneWithLatestPosts(userId).pipe(
+              service.findOne(userId).pipe(
                 Effect.withConcurrency('unbounded'),
               ),
             ),
@@ -58,12 +63,10 @@ describe(EffectiveUsersService.name, () => {
               onFailure: (cause) => {
                 Match.value(cause).pipe(
                   Match.tag('Fail', ({ error }) => {
-                    assert(error instanceof HttpException);
-                    assert.strictEqual(error.getStatus(), 404);
-                    assert.deepEqual(error.getResponse(), {});
+                    assert(error instanceof NotFoundException);
                   }),
-                  Match.orElse((unexpectedCause) =>
-                    assert.fail(`Unexpected cause: ${unexpectedCause}`)
+                  Match.orElse((unexpected) =>
+                    assert.fail(`Unexpected cause: ${unexpected}`)
                   ),
                 );
               },
@@ -73,27 +76,15 @@ describe(EffectiveUsersService.name, () => {
       });
 
       describe('when the user is found', () => {
-        beforeEach(async () => {
-          const module: TestingModule = await Test.createTestingModule({
-            imports: [
-              FakeApiKiotaModule.register({
-                customFetch: fetchMock
-                  .sandbox()
-                  .get(`path:/users/${userId}`, user)
-                  .getOnce('path:/posts', posts, {
-                    query: { userId, limit: 5 },
-                  }),
-              }),
-            ],
-            providers: [EffectiveUsersService],
-          }).compile();
-
-          service = module.get(EffectiveUsersService);
+        beforeEach(() => {
+          fetchMock
+            .get(`path:/users/${userId}`, user)
+            .getOnce('path:/posts', posts, { query: { userId, limit: 5 } });
         });
 
         it('should return a specified user with the latest posts', async () => {
           assert.deepStrictEqual(
-            await Effect.runPromise(service.findOneWithLatestPosts(userId)),
+            await Effect.runPromise(service.findOne(userId)),
             {
               id: user.id,
               username: user.username,
