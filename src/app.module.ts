@@ -1,4 +1,3 @@
-import { FakeApiKiotaModule } from '@app/fake-api-kiota';
 import { FakeApiOpenapiGenModule } from '@app/fake-api-openapi-gen';
 import { Module } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
@@ -8,16 +7,15 @@ import { AppService } from './app.service.ts';
 import { ComplicatedUsersModule } from './complicated-users/complicated-users.module.ts';
 import { EffectiveUsersModule } from './effective-users/effective-users.module.ts';
 import { NaiveUsersModule } from './naive-users/naive-users.module.ts';
-import { SimpleUsersModule } from './simple-users/simple-users.module.ts';
+import { RealworldUsersModule } from './realworld-users/realworld-users.module.ts';
 
 @Module({
   imports: [
-    FakeApiKiotaModule.register({ global: true }),
     FakeApiOpenapiGenModule.register({ global: true }),
     ComplicatedUsersModule,
     EffectiveUsersModule,
     NaiveUsersModule,
-    SimpleUsersModule,
+    RealworldUsersModule,
   ],
   controllers: [AppController],
   providers: [AppService, {

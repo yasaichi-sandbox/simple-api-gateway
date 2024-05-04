@@ -6,8 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "codegen:kiota": "kiota generate --co -l typescript -d ./schema.yaml -o ./libs/fake-api-kiota/src/generated/ && ls && find ./libs/fake-api-kiota/src/generated/ -type f -exec sed -i '' -E \"s/from '\\.(.+)\\/';/from '.\\1\\/index.ts';/g\" {} +",
-    "codegen:openapi": "rm -rf ./libs/fake-api-openapi-gen/src/generated/ && openapi-generator-cli generate -g typescript -i ./schema.yaml -o ./libs/fake-api-openapi-gen/src/generated/ --additional-properties=platform=deno,useObjectParameters=true",
+    "codegen": "rm -rf ./libs/fake-api-openapi-gen/src/generated/ && openapi-generator-cli generate -g typescript -i ./schema.yaml -o ./libs/fake-api-openapi-gen/src/generated/ --additional-properties=platform=deno,useObjectParameters=true",
     "format": "deno fmt",
     "start": "deno run --allow-env --allow-net --allow-read=. src/main.ts",
     "start:dev": "deno run --allow-env --allow-net --allow-read=. --watch src/main.ts",
@@ -22,12 +21,6 @@
     "typecheck": "deno check src/main.ts"
   },
   "dependencies": {
-    "@microsoft/kiota-abstractions": "1.0.0-preview.51",
-    "@microsoft/kiota-http-fetchlibrary": "1.0.0-preview.50",
-    "@microsoft/kiota-serialization-form": "1.0.0-preview.40",
-    "@microsoft/kiota-serialization-json": "1.0.0-preview.51",
-    "@microsoft/kiota-serialization-multipart": "1.0.0-preview.29",
-    "@microsoft/kiota-serialization-text": "1.0.0-preview.48",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/mapped-types": "*",

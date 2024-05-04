@@ -6,18 +6,6 @@
     "deleteOutDir": true
   },
   "projects": {
-    "fake-api": {
-      "type": "library",
-      "root": "libs/fake-api",
-      "entryFile": "index",
-      "sourceRoot": "libs/fake-api/src"
-    },
-    "nestjs-kiota": {
-      "type": "library",
-      "root": "libs/nestjs-kiota",
-      "entryFile": "index",
-      "sourceRoot": "libs/nestjs-kiota/src"
-    },
     "fake-api-openapi-gen": {
       "type": "library",
       "root": "libs/fake-api-openapi-gen",
