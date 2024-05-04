@@ -7,6 +7,6 @@ export class EffectiveUsersController {
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.effectiveUsersService.findOneWithLatestPosts(id);
+    return this.effectiveUsersService.findOne(id);
   }
 }

@@ -1,7 +1,9 @@
 .gitignore
 .openapi-generator-ignore
-DefaultApi.md
-apis/DefaultApi.ts
+PostApi.md
+UserApi.md
+apis/PostApi.ts
+apis/UserApi.ts
 apis/baseapi.ts
 apis/exception.ts
 auth/auth.ts

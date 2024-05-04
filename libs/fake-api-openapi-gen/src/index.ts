@@ -1,6 +1,7 @@
 export * from './fake-api-openapi-gen.module.ts';
 export {
   ApiException,
-  DefaultApi as FakeApiService,
+  PostApi as PostApiService,
+  UserApi as UserApiService,
 } from './generated/index.ts';
 export * from './generated/models/all.ts';

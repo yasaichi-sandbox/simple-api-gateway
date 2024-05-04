@@ -57,6 +57,9 @@ paths:
   /posts:
     get:
       description: Get posts
+      operationId: getPosts
+      tags:
+        - post
       parameters:
         - name: userId
           in: query
@@ -84,6 +87,9 @@ paths:
   /users/{user-id}:
     get:
       description: 'Get user by ID'
+      operationId: getUserById
+      tags:
+        - user
       parameters:
         - $ref: '#/components/parameters/user-id'
       responses:

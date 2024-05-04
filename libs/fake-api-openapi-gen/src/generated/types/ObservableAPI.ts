@@ -5,20 +5,20 @@ import {mergeMap, map} from  '../rxjsStub.ts';
 import { Post } from '../models/Post.ts';
 import { User } from '../models/User.ts';
 
-import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi.ts";
-export class ObservableDefaultApi {
-    private requestFactory: DefaultApiRequestFactory;
-    private responseProcessor: DefaultApiResponseProcessor;
+import { PostApiRequestFactory, PostApiResponseProcessor} from "../apis/PostApi.ts";
+export class ObservablePostApi {
+    private requestFactory: PostApiRequestFactory;
+    private responseProcessor: PostApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: DefaultApiRequestFactory,
-        responseProcessor?: DefaultApiResponseProcessor
+        requestFactory?: PostApiRequestFactory,
+        responseProcessor?: PostApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new DefaultApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new DefaultApiResponseProcessor();
+        this.requestFactory = requestFactory || new PostApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new PostApiResponseProcessor();
     }
 
     /**
@@ -26,8 +26,8 @@ export class ObservableDefaultApi {
      * @param userId Filter results by user ID
      * @param limit Limit results by number
      */
-    public postsGetWithHttpInfo(userId?: number, limit?: number, _options?: Configuration): Observable<HttpInfo<Array<Post>>> {
-        const requestContextPromise = this.requestFactory.postsGet(userId, limit, _options);
+    public getPostsWithHttpInfo(userId?: number, limit?: number, _options?: Configuration): Observable<HttpInfo<Array<Post>>> {
+        const requestContextPromise = this.requestFactory.getPosts(userId, limit, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -41,7 +41,7 @@ export class ObservableDefaultApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.postsGetWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getPostsWithHttpInfo(rsp)));
             }));
     }
 
@@ -50,16 +50,34 @@ export class ObservableDefaultApi {
      * @param userId Filter results by user ID
      * @param limit Limit results by number
      */
-    public postsGet(userId?: number, limit?: number, _options?: Configuration): Observable<Array<Post>> {
-        return this.postsGetWithHttpInfo(userId, limit, _options).pipe(map((apiResponse: HttpInfo<Array<Post>>) => apiResponse.data));
+    public getPosts(userId?: number, limit?: number, _options?: Configuration): Observable<Array<Post>> {
+        return this.getPostsWithHttpInfo(userId, limit, _options).pipe(map((apiResponse: HttpInfo<Array<Post>>) => apiResponse.data));
+    }
+
+}
+
+import { UserApiRequestFactory, UserApiResponseProcessor} from "../apis/UserApi.ts";
+export class ObservableUserApi {
+    private requestFactory: UserApiRequestFactory;
+    private responseProcessor: UserApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: UserApiRequestFactory,
+        responseProcessor?: UserApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new UserApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new UserApiResponseProcessor();
     }
 
     /**
      * Get user by ID
      * @param userId key: id of user
      */
-    public usersUserIdGetWithHttpInfo(userId: number, _options?: Configuration): Observable<HttpInfo<User>> {
-        const requestContextPromise = this.requestFactory.usersUserIdGet(userId, _options);
+    public getUserByIdWithHttpInfo(userId: number, _options?: Configuration): Observable<HttpInfo<User>> {
+        const requestContextPromise = this.requestFactory.getUserById(userId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -73,7 +91,7 @@ export class ObservableDefaultApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usersUserIdGetWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getUserByIdWithHttpInfo(rsp)));
             }));
     }
 
@@ -81,8 +99,8 @@ export class ObservableDefaultApi {
      * Get user by ID
      * @param userId key: id of user
      */
-    public usersUserIdGet(userId: number, _options?: Configuration): Observable<User> {
-        return this.usersUserIdGetWithHttpInfo(userId, _options).pipe(map((apiResponse: HttpInfo<User>) => apiResponse.data));
+    public getUserById(userId: number, _options?: Configuration): Observable<User> {
+        return this.getUserByIdWithHttpInfo(userId, _options).pipe(map((apiResponse: HttpInfo<User>) => apiResponse.data));
     }
 
 }

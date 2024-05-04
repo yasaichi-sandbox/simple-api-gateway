@@ -9,22 +9,22 @@ import { afterEach, beforeEach, describe, it } from '@std/testing/bdd';
 import { Effect, Exit, Match } from 'effect';
 import fetchMock from 'fetch-mock';
 import assert from 'node:assert';
-import { EffectiveUsersService } from './effective-users.service.ts';
+import { RealworldUsersService } from './realworld-users.service.ts';
 
-describe(EffectiveUsersService.name, () => {
-  let service: EffectiveUsersService;
+describe(RealworldUsersService.name, () => {
+  let service: RealworldUsersService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [FakeApiOpenapiGenModule.register({})],
-      providers: [EffectiveUsersService],
+      providers: [RealworldUsersService],
     }).compile();
 
-    service = module.get(EffectiveUsersService);
+    service = module.get(RealworldUsersService);
   });
 
   describe(
-    EffectiveUsersService.prototype.findOne.name,
+    RealworldUsersService.prototype.findOne.name,
     () => {
       const userId = 42;
       const user: User = {
