@@ -9,6 +9,6 @@ export class ComplicatedUsersController {
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.complicatedUsersService.findOneWithLatestPosts(id);
+    return this.complicatedUsersService.findOne(id);
   }
 }
