@@ -35,7 +35,7 @@ export class RealworldUsersService {
             { times: 3 },
           ),
         ],
-        { concurrency: 'unbounded' },
+        { concurrency: 'inherit' },
       );
 
       return {

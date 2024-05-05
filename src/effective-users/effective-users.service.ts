@@ -29,7 +29,7 @@ export class EffectiveUsersService {
             this.postApiService.getPosts({ userId: id, limit: 5 })
           ).pipe(Effect.retry({ times: 3 })),
       ],
-      { concurrency: 'unbounded' },
+      { concurrency: 'inherit' },
     ).pipe(
       Effect.catchAll(({ error }) =>
         error instanceof ApiException && error.code === 404
