@@ -34,7 +34,7 @@ dependencies:
     version: 7.8.1
   type-fest:
     specifier: ^4.18.1
-    version: 4.18.1
+    version: 4.18.2
 
 devDependencies:
   '@nestjs/cli':
@@ -3224,8 +3224,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /type-fest@4.18.1:
-    resolution: {integrity: sha512-qXhgeNsX15bM63h5aapNFcQid9jRF/l3ojDoDFmekDQEUufZ9U4ErVt6SjDxnHp48Ltrw616R8yNc3giJ3KvVQ==}
+  /type-fest@4.18.2:
+    resolution: {integrity: sha512-+suCYpfJLAe4OXS6+PPXjW3urOS4IoP9waSiLuXfLgqZODKw/aWwASvzqE886wA0kQgGy0mIWyhd87VpqIy6Xg==}
     engines: {node: '>=16'}
     dev: false
 
