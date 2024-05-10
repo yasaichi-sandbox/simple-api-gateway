@@ -38,7 +38,7 @@ export class EffectiveUsersService {
           )
           : Effect.die(error)
       ),
-      Effect.map(([user, posts]) => ({
+      Effect.andThen(([user, posts]) => ({
         id: user.id,
         username: user.username,
         latestPosts: posts.map((post) => ({ id: post.id, title: post.title })),
