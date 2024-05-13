@@ -1,6 +1,6 @@
 import { FakeApiOpenapiGenModule } from '@app/fake-api-openapi-gen';
-import { Module } from '@nestjs/common';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { Module, ValidationPipe } from '@nestjs/common';
+import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { AppController } from './app.controller.ts';
 import { AppInterceptor } from './app.interceptor.ts';
 import { AppService } from './app.service.ts';
@@ -18,9 +18,16 @@ import { RealworldUsersModule } from './realworld-users/realworld-users.module.t
     RealworldUsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService, {
-    provide: APP_INTERCEPTOR,
-    useClass: AppInterceptor,
-  }],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: AppInterceptor,
+    },
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
+    },
+  ],
 })
 export class AppModule {}
