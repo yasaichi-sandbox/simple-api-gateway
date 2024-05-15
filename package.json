@@ -46,7 +46,7 @@
     "@types/sinon": "^17.0.3",
     "@types/supertest": "^6.0.0",
     "fetch-mock": "^9.11.0",
-    "sinon": "^17.0.1",
+    "sinon": "^18.0.0",
     "supertest": "^7.0.0"
   }
 }
