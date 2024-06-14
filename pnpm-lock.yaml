@@ -28,7 +28,7 @@ dependencies:
     version: 4.3.1
   effect:
     specifier: ^3.0.0
-    version: 3.3.1
+    version: 3.3.2
   p-retry:
     specifier: ^6.2.0
     version: 6.2.0
@@ -1659,8 +1659,8 @@ packages:
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  /effect@3.3.1:
-    resolution: {integrity: sha512-MP6W5NKSEgsQWgTZcLXTPu6sDjCO3Rqi9NFdYUBjlUZ1poCclLgzUerSVVnymE1oYBG1/7Ix82LpBp7EB5Lxmw==}
+  /effect@3.3.2:
+    resolution: {integrity: sha512-695XQBtp+UUYG50oREG9ujnRoeQU7xhwHDhT6ZAexm3Q+umdml1kjxcPoYRrS65crmaLlhVpjZHePJNzWOODnA==}
     dev: false
 
   /electron-to-chromium@1.4.681:
