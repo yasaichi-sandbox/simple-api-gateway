@@ -75,7 +75,7 @@ devDependencies:
     version: 6.0.2
   fetch-mock:
     specifier: ^10.0.0
-    version: 10.0.7
+    version: 10.0.8
   sinon:
     specifier: ^18.0.0
     version: 18.0.0
@@ -1609,8 +1609,8 @@ packages:
   /fast-safe-stringify@2.1.1:
     resolution: {integrity: sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==}
 
-  /fetch-mock@10.0.7:
-    resolution: {integrity: sha512-TFG42kMRJ6dZpUDeVTdXNjh5O4TchHU/UNk41a050TwKzRr5RJQbtckXDjXiQFHPKgXGUG5l2TY3ZZ2gokiXaQ==}
+  /fetch-mock@10.0.8:
+    resolution: {integrity: sha512-eAubSqiQbkKoUMrCd1PhVAB6WHDriJFGLvDBPx6vldNbHQEbq+FdejPlOHZq7ZaxbzouMOqJVDv2ms402tC/QA==}
     engines: {node: '>=4.0.0'}
     peerDependencies:
       node-fetch: '*'
@@ -1623,7 +1623,6 @@ packages:
       is-subset: 0.1.1
       lodash.isequal: 4.5.0
       path-to-regexp: 2.4.0
-      querystring: 0.2.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2436,12 +2435,6 @@ packages:
     engines: {node: '>=0.6'}
     dependencies:
       side-channel: 1.0.6
-    dev: true
-
-  /querystring@0.2.1:
-    resolution: {integrity: sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==}
-    engines: {node: '>=0.4.x'}
-    deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
     dev: true
 
   /randombytes@2.1.0:
