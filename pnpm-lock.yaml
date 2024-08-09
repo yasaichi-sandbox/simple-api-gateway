@@ -74,8 +74,8 @@ devDependencies:
     specifier: ^6.0.0
     version: 6.0.2
   fetch-mock:
-    specifier: ^10.0.0
-    version: 10.1.0
+    specifier: ^11.0.0
+    version: 11.0.2
   sinon:
     specifier: ^18.0.0
     version: 18.0.0
@@ -1618,8 +1618,8 @@ packages:
   /fast-safe-stringify@2.1.1:
     resolution: {integrity: sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==}
 
-  /fetch-mock@10.1.0:
-    resolution: {integrity: sha512-/2DFdUrn2afOifgXuq3ppTGOg/S8YAvjeEOlBJ4QgWiT24pYGozju3Hz5UQm1ynumY9hlzBHE2z0jd0PHD+fRg==}
+  /fetch-mock@11.0.2:
+    resolution: {integrity: sha512-4+O+T9hb6WE521jfZDoURMhlDBRgJHMPOobC+FWSg2d1/qjbzfICs8bFGvjk4fGZcrKF2fEjATpJ5n3xCEvGMQ==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       node-fetch: '*'
